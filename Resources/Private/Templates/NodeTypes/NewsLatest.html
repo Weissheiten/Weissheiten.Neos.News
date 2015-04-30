@@ -24,10 +24,27 @@
                 <f:else>
                     <div class="row">
                         <div class="newsLatestEntryContainer">
-                            <f:for each="{newsCollection}" as="newsItem">
+                            <f:for each="{newsCollection}" as="newsItem" iteration="iteration">
                                 <neos:link.node node="{newsItem}">
                                     <ts:render path="itemRenderer" context="{node: newsItem}" />
                                 </neos:link.node>
+
+                                <f:if condition="{iteration.cycle} % 2">
+                                    <!-- Add the extra clearfix for only the required viewport -->
+                                    <f:then></f:then>
+                                    <f:else>
+                                        <div class="clearfix visible-sm-block visible-md-block"></div>
+                                    </f:else>
+                                </f:if>
+
+                                <f:if condition="{iteration.cycle} % 4">
+                                    <f:then></f:then>
+                                    <f:else>
+                                        <div class="clearfix visible-lg-block"></div>
+                                    </f:else>
+                                </f:if>
+
+                                <div class="clearfix visible-xs-block"></div>
                             </f:for>
                         </div>
                     </div>
