@@ -1,34 +1,47 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en"
       xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
+      xmlns:media="http://typo3.org/ns/TYPO3/Media/ViewHelpers"
       xmlns:neos="http://typo3.org/ns/TYPO3/Neos/ViewHelpers">
 
 <f:section name="newsShort">
     <!-- News container for the PrimaryContent, attributes/values can be defined in /Resources/Private/TypoScript/Library/NodeTypes/News.ts2 -->
-    <div{attributes -> f:format.raw()}>
-        <!-- Creation Date -->
-        <p><f:format.date date="{creationDate}" format="d.m.Y H:i" /></p>
+    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+        <f:if condition="{previewThumb}">
+            <f:then>
+                <div class="rect-responsive">
+                    <div class="twoTileBox-left">
+                        <media:image class="img-responsive outletListEntryThumb" asset="{previewThumb}" title="{title}" alt="{title}" />
+                    </div>
+                    <div class="twoTileBox-right">
+                        <h3>
+                            <f:for each="{categories}" as="category">
+                                {category.properties.title}
+                            </f:for> - <f:format.date date="{creationDate}" format="d.m.Y H:i" /></h3>
+                        <h2><neos:contentElement.editable property="title" /></h2>
+                        <p><neos:contentElement.editable property="teaser" /></p>
+                    </div>
+                </div>
+            </f:then>
+            <f:else>
+                <div class="rect-responsive">
+                    <div class="twoTileBox-left padded">
+                        <h3>
+                            <f:for each="{categories}" as="category">
+                                {category.properties.title}
+                            </f:for> - <f:format.date date="{creationDate}" format="d.m.Y H:i" /></h3>
+                        <h2><neos:contentElement.editable property="title" /></h2>
+                        <p><neos:contentElement.editable property="teaser" /></p>
+                    </div>
 
-        <!-- News Title -->
-        <h1><neos:contentElement.editable property="title" /></h1>
-
-        <!-- Teaser -->
-        <h3><neos:contentElement.editable property="teaser" /></h3>
-
-        <!-- Categories -->
-        <f:if condition="{categories}">
-            <p>Categories:
-                <f:for each="{categories}" as="category">
-                    <neos:link.node node="{category}">{category.properties.title}</neos:link.node>
-                </f:for>
-            </p>
+                    <div class="twoTileBox-right">
+                        sometext
+                    </div>
+                </div>
+            </f:else>
         </f:if>
-
-        <!-- Author -->
-        <f:if condition="{author}">
-            <p>Author: <neos:link.node node="{author}">{author.title}</neos:link.node></p>
-        </f:if>
-
     </div>
+
+
 </f:section>
 </html>

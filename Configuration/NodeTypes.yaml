@@ -18,6 +18,9 @@
         general:
           label: 'General'
           position: 10
+        media:
+          label: 'Medien'
+          position: 20
         related:
           label: 'Related'
   properties:
@@ -133,6 +136,27 @@
         reloadIfChanged: FALSE
         inspector:
           group: 'related'
+    previewThumb:
+      type: TYPO3\Media\Domain\Model\ImageVariant
+      ui:
+        label: 'Vorschaubild'
+        reloadIfChanged: TRUE
+        inspector:
+          group: 'media'
+          editorOptions:
+            features:
+              crop: TRUE
+              resize: FALSE
+            crop:
+              aspectRatio:
+                options:
+                  fourFive: ~
+                  fiveSeven: ~
+                  twoThree: ~
+                  fourThree: ~
+                  sixteenNine: ~
+                enableOriginal: FALSE
+                allowCustom: FALSE
 
 'Weissheiten.News:News':
   superTypes:

@@ -13,4 +13,6 @@ prototype(Weissheiten.News:NewsShort) < prototype(TYPO3.Neos:Content){
     categories = ${q(node).property('categories')}
     author = ${q(node).property('author')}
     tags = ${q(node).property('tags')}
+
+    previewThumb = ${q(node).property('previewThumb')}
 }
