@@ -14,11 +14,13 @@ prototype(Weissheiten.News:NewsLatest) < prototype(Weissheiten.News:AbstractList
 
     #Set to uncached to ensure that pagination works
     @cache {
- 		mode = 'uncached'
- 		context {
- 			1 = 'node'
- 			2 = 'documentNode'
- 			3 = 'site'
-		}
+        mode = 'cached'
+        entryIdentifier {
+            node = ${node}
+            editPreviewMode = ${editPreviewMode}
+        }
+        entryTags {
+            1 = ${'Weissheiten.News:AbstractNews'}
+        }
     }
 }

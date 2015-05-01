@@ -10,32 +10,32 @@
         <f:if condition="{previewThumb}">
             <f:then>
                 <div class="rect-responsive">
-                    <div class="twoTileBox-left">
+                    <div class="twoTileBox-left-image">
                         <media:image class="img-responsive outletListEntryThumb" asset="{previewThumb}" title="{title}" alt="{title}" />
                     </div>
-                    <div class="twoTileBox-right">
+                    <div class="twoTileBox-right valignmiddle padded">
                         <h3>
                             <f:for each="{categories}" as="category">
                                 {category.properties.title}
-                            </f:for> - <f:format.date date="{creationDate}" format="d.m.Y H:i" /></h3>
+                            </f:for><!-- <f:format.date date="{creationDate}" format="d.m.Y" /> --></h3>
                         <h2><neos:contentElement.editable property="title" /></h2>
-                        <p><neos:contentElement.editable property="teaser" /></p>
                     </div>
                 </div>
             </f:then>
             <f:else>
                 <div class="rect-responsive">
-                    <div class="twoTileBox-left padded">
+                    <div class="twoTileBox-left padded valignmiddle">
                         <h3>
                             <f:for each="{categories}" as="category">
                                 {category.properties.title}
-                            </f:for> - <f:format.date date="{creationDate}" format="d.m.Y H:i" /></h3>
+                            </f:for></h3>
                         <h2><neos:contentElement.editable property="title" /></h2>
-                        <p><neos:contentElement.editable property="teaser" /></p>
                     </div>
 
-                    <div class="twoTileBox-right">
-                        sometext
+                    <div class="twoTileBox-right padded">
+                        <!--<h3 class="pull-right"> <f:format.date date="{creationDate}" format="d.m.Y" /> </h3>-->
+                        <h4><neos:contentElement.editable property="teaser" /></h4>
+                        <p>{previewText -> f:format.raw()}</p>
                     </div>
                 </div>
             </f:else>
