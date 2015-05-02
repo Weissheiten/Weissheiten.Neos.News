@@ -33,11 +33,19 @@
                                     <!-- Add the extra clearfix for only the required viewport -->
                                     <f:then></f:then>
                                     <f:else>
-                                        <div class="clearfix visible-sm-block visible-md-block"></div>
+                                        <div class="clearfix visible-sm-block"></div>
                                     </f:else>
                                 </f:if>
 
-                                <f:if condition="{iteration.cycle} % 4">
+                                <f:if condition="{iteration.cycle} % 3">
+                                    <!-- Add the extra clearfix for only the required viewport -->
+                                    <f:then></f:then>
+                                    <f:else>
+                                        <div class="clearfix visible-md-block"></div>
+                                    </f:else>
+                                </f:if>
+
+                                <f:if condition="{iteration.cycle} % 6">
                                     <f:then></f:then>
                                     <f:else>
                                         <div class="clearfix visible-lg-block"></div>

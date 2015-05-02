@@ -14,10 +14,10 @@ Weissheiten:
       maxNumberOfItems: 10000
       pagination:
         itemsPerPage: 2
-        maximumNumberOfLinks: 10
+        maximumNumberOfLinks: 6
       sortProperty: creationDate
     newsLatest:
-      maxNumberOfItems: 8
+      maxNumberOfItems: 6
       pagination: ~
       sortProperty: creationDate
 
