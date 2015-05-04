@@ -14,6 +14,9 @@ prototype(Weissheiten.News:AbstractList) < prototype(TYPO3.Neos:Content){
     # limit the results found according to the configuration in Configuration/Settings.yaml
     newsCollection.@process.slice = ${q(value).count() > 0 ? q(value).slice(0, String.toInteger(configuration.maxNumberOfItems)).get() : value}
 
+    # limit the results found according to the configuration in Configuration/Settings.yaml
+    newsCollection.@process.tile = ${String.toInteger(configuration.tilingCols) > 0 ? q(value).tile(String.toInteger(configuration.tilingCols)).get() : value}
+
     @cache {
         mode = 'cached'
         maximumLifetime = '86400'

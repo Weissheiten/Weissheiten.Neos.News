@@ -10,8 +10,6 @@ prototype(Weissheiten.News:NewsLatest) < prototype(Weissheiten.News:AbstractList
     @override.configuration = ${Configuration.setting('Weissheiten.News.newsLatest')}
     configuration = ${configuration}
 
-    # AbstractList already fetches all entries for AbstractNews so we don't need to overwrite that
-
     #Set to uncached to ensure that pagination works
     @cache {
         mode = 'cached'

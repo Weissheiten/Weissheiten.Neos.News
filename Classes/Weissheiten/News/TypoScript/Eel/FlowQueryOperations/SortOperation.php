@@ -53,7 +53,7 @@ class SortOperation extends AbstractOperation {
             throw new \TYPO3\Eel\FlowQuery\FlowQueryException('sort() needs property name by which nodes should be sorted', 1332492263);
         } else {
             $nodes = $flowQuery->getContext();
-
+            //\TYPO3\Flow\var_dump('sort');
             $sortByPropertyPath = $arguments[0];
             $sortOrder = 'DESC';
             if (isset($arguments[1]) && !empty($arguments[1]) && in_array($arguments[1], array('ASC', 'DESC'))) {
@@ -66,8 +66,6 @@ class SortOperation extends AbstractOperation {
             /** @var Node $node  */
             foreach ($nodes as $node) {
                 $propertyValue = $node->getProperty($sortByPropertyPath);
-
-                // \TYPO3\Flow\var_dump($propertyValue);
 
                 if ($propertyValue instanceof \DateTime) {
                     $propertyValue = $propertyValue->getTimestamp();
