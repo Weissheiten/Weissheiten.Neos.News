@@ -10,10 +10,23 @@ use TYPO3\Flow\Annotations as Flow;
 use TYPO3\TYPO3CR\Domain\Model\NodeInterface;
 use TYPO3\Eel\FlowQuery\FlowQuery;
 use TYPO3\TYPO3CR\Domain\Model\Node;
+use TYPO3\Media\Domain\Model\Tag;
 /**
  * EEL tiling operation to setup everything for displaying news as tiles
  */
 class TilingOperation extends AbstractOperation {
+    /**
+     * @Flow\Inject
+     * @var \TYPO3\Media\Domain\Repository\AssetRepository
+     */
+    protected $assetRepository;
+
+    /**
+     * @Flow\Inject
+     * @var \TYPO3\Media\Domain\Repository\TagRepository
+     */
+    protected $tagRepository;
+
     /**
      * {@inheritdoc}
      *
@@ -54,18 +67,24 @@ class TilingOperation extends AbstractOperation {
             $nodes = $flowQuery->getContext();
             $tiledNodes = $nodes;
 
-            // number of Columns that are available for filling
-            $colsAvailable = $arguments[0];
+            // number of Columns that are available for filling, the last tile is always the "more news" button
+            $colsAvailable = $arguments[0] - 1;
 
             foreach ($tiledNodes as $node) {
                 // Calculate the number of cols reserved
                 $reservedCols = $this->calcColNumber($node);
-
-                // add the info on how many cols should be rendered to the node
-                $node->setProperty('newsCols', $reservedCols);
-
                 // substract from available Cols
                 $colsAvailable -= $reservedCols;
+                // add the info on how many cols should be rendered to the node
+                $node->setProperty('newsCols', $reservedCols);
+            }
+
+            $tag = $this->tagRepository->findBySearchTerm('FlavorTiles')->getFirst();
+
+            for($i=0;$i<$colsAvailable;$i++){
+                $node = $this->assetRepository->findByTag($tag)->getFirst();
+                //\TYPO3\Flow\var_dump($node);
+                $tiledNodes[] = $node;
             }
 
             $flowQuery->setContext($tiledNodes);

@@ -17,7 +17,7 @@ Weissheiten:
         maximumNumberOfLinks: 6
       sortProperty: creationDate
     newsLatest:
-      maxNumberOfItems: 6
+      maxNumberOfItems: 5
       tilingCols: 12
       pagination: ~
       sortProperty: creationDate

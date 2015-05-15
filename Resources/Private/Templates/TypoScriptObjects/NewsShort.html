@@ -45,17 +45,31 @@
             </div>
         </f:then>
         <f:else>
-            <div class="col-xs-12 col-sm-3 col-md-2 col-lg-1" style="background-color: lightblue;border: 1px red solid">
-                <div class="square-responsive">
-                    D E M O
-                </div>
-            </div>
+            <f:if condition="{newsCols} == 1">
+                <f:then>
+                    <div class="col-xs-12 col-sm-3 col-md-2 col-lg-1">
+                        <div class="square-responsive">
+                            <div class="singleTileBox validnmiddle">
+                                <h3>
+                                    <f:for each="{categories}" as="category">
+                                        {category.properties.title}
+                                    </f:for>
+                                </h3>
+                                <h2><neos:contentElement.editable property="title" /></h2>
+                                <p>{previewText -> f:format.raw()}</p>
+                            </div>
+                        </div>
+                    </div>
+                </f:then>
+                <f:else>
+                    <div class="col-xs-12 col-sm-3 col-md-2 col-lg-1">
+                        <div class="square-responsive">
+                            <media:image class="img-responsive outletListEntryThumb" asset="{node}" title="{title}" alt="{title}" />
+                        </div>
+                    </div>
+                </f:else>
+            </f:if>
         </f:else>
-
     </f:if>
-
-
-
-
 </f:section>
 </html>
