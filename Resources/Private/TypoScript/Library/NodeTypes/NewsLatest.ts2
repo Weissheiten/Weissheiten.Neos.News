@@ -10,6 +10,8 @@ prototype(Weissheiten.News:NewsLatest) < prototype(Weissheiten.News:AbstractList
     @override.configuration = ${Configuration.setting('Weissheiten.News.newsLatest')}
     configuration = ${configuration}
 
+    related = ${q(node).property('related')}
+
     #Set to uncached to ensure that pagination works
     @cache {
         mode = 'cached'

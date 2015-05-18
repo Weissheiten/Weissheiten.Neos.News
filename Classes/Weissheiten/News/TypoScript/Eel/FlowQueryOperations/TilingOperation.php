@@ -72,6 +72,8 @@ class TilingOperation extends AbstractOperation {
             // Tag for flavor images
             $tag = $this->tagRepository->findBySearchTerm('FlavorTiles')->getFirst();
 
+            // get all available flavor images
+            $flavorImages = $this->assetRepository->findByTag($tag)->toArray();
 
             foreach ($nodes as $node) {
                 // Calculate the number of cols reserved
@@ -83,23 +85,19 @@ class TilingOperation extends AbstractOperation {
 
                 $tiledNodes[] = $node;
 
+
                 // if there is only one tile reserved we also add a flavor image
                 if($reservedCols==1){
-                    $imageNode = $this->assetRepository->findByTag($tag)->getFirst();
-                    $tiledNodes[] = $imageNode;
+                    $tiledNodes[] = array_pop($flavorImages);
+                    // start over from the first image if the last image was used
+                    if(count($flavorImages)<1){
+                        $flavorImages = $this->assetRepository->findByTag($tag)->toArray();
+                    }
                 }
             }
 
             // the last tile is always a single one so we add an additional image to the end of the nodearray
-            $imageNode = $this->assetRepository->findByTag($tag)->getFirst();
-            $tiledNodes[] = $imageNode;
-/*
-            for($i=0;$i<$colsAvailable;$i++){
-                $node = $this->assetRepository->findByTag($tag)->getFirst();
-                //\TYPO3\Flow\var_dump($node);
-                $tiledNodes[] = $node;
-            }
-            */
+            $tiledNodes[] = array_pop($flavorImages);
 
             $flowQuery->setContext($tiledNodes);
         }
@@ -111,8 +109,7 @@ class TilingOperation extends AbstractOperation {
      * Calculates the number of columns reserved for this news entry
      * Evaluation works as following:
      * Important News => 2 Tiles
-     * News with a preview image => 70 % chance to be rendered 2 tile
-     * News without a preview image => 30 % chance to be rendered as 2 tile
+     * News with a preview image => 2 tile
      * Else render as 1 Tile
      *
      * @param NodeInterface $node

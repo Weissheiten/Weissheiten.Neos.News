@@ -257,6 +257,22 @@
     icon: icon-list
     inlineEditable: true
     group: 'news'
+    inspector:
+      groups:
+        general:
+          label: 'General'
+          position: 10
+        related:
+          label: 'Related'
+  properties:
+    related:
+      type: reference
+      ui:
+        label: 'weiterführender Link'
+        inspector:
+          group: 'related'
+          editorOptions:
+            nodeTypes: ['TYPO3.Neos.NodeTypes:Page']
   constraints:
     nodeTypes:
       '*': false
