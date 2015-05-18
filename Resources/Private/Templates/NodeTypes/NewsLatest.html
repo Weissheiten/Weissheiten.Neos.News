@@ -32,8 +32,8 @@
 
                         <div class="col-xs-6 col-sm-3 col-md-2 col-lg-1">
                             <div class="square-responsive">
-                                <div class="TileBox" style="background-color:red;">
-                                    demo
+                                <div class="TileBox">
+                                    <neos:link.node class="LinkButton" node="{target}" title="{description}">{description}</neos:link.node>
                                 </div>
                             </div>
                         </div>
@@ -42,7 +42,7 @@
 
                 <script type="text/javascript">
                     $(document).ready(function(){
-                        $(".TileBox").dotdotdot({
+                        $(".TileBoxRight, .TileBoxLeftText").dotdotdot({
                             ellipsis: ' [...]',
                             wrap: 'word',
                             after: null,

@@ -65,27 +65,41 @@ class TilingOperation extends AbstractOperation {
             throw new \TYPO3\Eel\FlowQuery\FlowQueryException('tile() needs property amount of columns available for which the news should be distributed', 1332492263);
         } else {
             $nodes = $flowQuery->getContext();
-            $tiledNodes = $nodes;
 
             // number of Columns that are available for filling, the last tile is always the "more news" button
             $colsAvailable = $arguments[0] - 1;
 
-            foreach ($tiledNodes as $node) {
+            // Tag for flavor images
+            $tag = $this->tagRepository->findBySearchTerm('FlavorTiles')->getFirst();
+
+
+            foreach ($nodes as $node) {
                 // Calculate the number of cols reserved
                 $reservedCols = $this->calcColNumber($node);
                 // substract from available Cols
                 $colsAvailable -= $reservedCols;
                 // add the info on how many cols should be rendered to the node
                 $node->setProperty('newsCols', $reservedCols);
+
+                $tiledNodes[] = $node;
+
+                // if there is only one tile reserved we also add a flavor image
+                if($reservedCols==1){
+                    $imageNode = $this->assetRepository->findByTag($tag)->getFirst();
+                    $tiledNodes[] = $imageNode;
+                }
             }
 
-            $tag = $this->tagRepository->findBySearchTerm('FlavorTiles')->getFirst();
-
+            // the last tile is always a single one so we add an additional image to the end of the nodearray
+            $imageNode = $this->assetRepository->findByTag($tag)->getFirst();
+            $tiledNodes[] = $imageNode;
+/*
             for($i=0;$i<$colsAvailable;$i++){
                 $node = $this->assetRepository->findByTag($tag)->getFirst();
                 //\TYPO3\Flow\var_dump($node);
                 $tiledNodes[] = $node;
             }
+            */
 
             $flowQuery->setContext($tiledNodes);
         }
@@ -110,15 +124,9 @@ class TilingOperation extends AbstractOperation {
         if($node->getProperty('important')===true){
             return 2;
         }
-        // if the news entry has a preview thumb there's a 70 % chance to render it with an image
-        if($node->getProperty('previewThumb')!=null && rand(1,10)>3) {
+        // if the news entry has a preview thumb it receives 2 tiles
+        if($node->getProperty('previewThumb')!=null) {
             return 2;
-        }
-        else{
-            // if the news entry is not important and has no image there's still a 30 % chance to receive 2 cols
-            if(rand(1,10)<=3){
-                return 2;
-            }
         }
         // else reserve 1 column
         return 1;
