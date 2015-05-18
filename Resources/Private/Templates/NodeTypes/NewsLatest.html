@@ -29,12 +29,20 @@
                                 <ts:render path="itemRenderer" context="{node: newsItem}" />
                             </neos:link.node>
                         </f:for>
+
+                        <div class="col-xs-6 col-sm-3 col-md-2 col-lg-1">
+                            <div class="square-responsive">
+                                <div class="TileBox" style="background-color:red;">
+                                    demo
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
                 <script type="text/javascript">
                     $(document).ready(function(){
-                        $(".twoTileBox-right, .twoTileBox-left, .singleTileBox").dotdotdot({
+                        $(".TileBox").dotdotdot({
                             ellipsis: ' [...]',
                             wrap: 'word',
                             after: null,
@@ -42,7 +50,6 @@
                         });
                     });
                 </script>
-
             </f:else>
         </f:if>
     </f:if>
