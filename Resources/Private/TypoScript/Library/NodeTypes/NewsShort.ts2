@@ -18,7 +18,6 @@ prototype(Weissheiten.News:NewsShort) < prototype(TYPO3.Neos:Content){
     tags = ${q(node).property('tags')}
 
     # get the number of cols for each item that was calculated by the "tile" flowQuery
-    newsCols = ${q(node).property('newsCols')}
-
+    important = ${q(node).property('important')}
     previewThumb = ${q(node).property('previewThumb')}
 }

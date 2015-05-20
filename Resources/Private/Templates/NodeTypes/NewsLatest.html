@@ -22,27 +22,23 @@
             </f:then>
             <!-- Pagination is not set for this list -->
             <f:else>
-                <div class="row">
-                    <div class="newsLatestEntryContainer">
-                        <f:for each="{newsCollection}" as="newsItem" iteration="iteration">
-                            <neos:link.node node="{newsItem}">
-                                <ts:render path="itemRenderer" context="{node: newsItem}" />
-                            </neos:link.node>
-                        </f:for>
 
-                        <div class="col-xs-6 col-sm-3 col-md-2 col-lg-1">
-                            <div class="square-responsive">
-                                <neos:link.node class="LinkButton" node="{related}" title="mehr News">
-                                    <div class="TileBox TileBoxLeftText ">
-                                        <div class="TileBoxLink">
-                                            alle Artikel
-                                        </div>
-                                    </div>
-                                </neos:link.node>
+                    <div class="col-xs-12 col-md-4">
+                        <div class="row">
+                            <div class="newsLatestEntryContainer">
+                                <f:for each="{newsCollection}" as="newsItem" iteration="iteration">
+                                    <neos:link.node node="{newsItem}">
+                                        <ts:render path="itemRenderer" context="{node: newsItem}" />
+                                    </neos:link.node>
+                                </f:for>
+
+                                <div class="col-xs-12">
+                                    <neos:link.node class="LinkButton" node="{related}" title="mehr News">alle Artikel</neos:link.node>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+
 
                 <script type="text/javascript">
                     $(document).ready(function(){

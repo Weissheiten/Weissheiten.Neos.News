@@ -81,7 +81,7 @@ class TilingOperation extends AbstractOperation {
                 // substract from available Cols
                 $colsAvailable -= $reservedCols;
                 // add the info on how many cols should be rendered to the node
-                $node->setProperty('newsCols', $reservedCols);
+                //$node->setProperty('newsCols', $reservedCols);
 
                 $tiledNodes[] = $node;
 
@@ -97,7 +97,7 @@ class TilingOperation extends AbstractOperation {
             }
 
             // the last tile is always a single one so we add an additional image to the end of the nodearray
-            $tiledNodes[] = array_pop($flavorImages);
+            //$tiledNodes[] = array_pop($flavorImages);
 
             $flowQuery->setContext($tiledNodes);
         }
