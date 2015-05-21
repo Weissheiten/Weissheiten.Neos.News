@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en"
+      xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
+      xmlns:neos="http://typo3.org/ns/TYPO3/Neos/ViewHelpers">
+
+<f:section name="eventDetail">
+    <!-- News container for the PrimaryContent, attributes/values can be defined in /Resources/Private/TypoScript/Library/NodeTypes/News.ts2 -->
+    <div{attributes -> f:format.raw()}>
+        <h1><f:format.date date="{eventDate}" format="d.m.Y H:i" /></h1>
+        <f:if condition="{place}">
+            <f:then>
+                <f:for each="{place}" as="location">
+                    <neos:link.node node="{location}">{location.properties.title}</neos:link.node>
+                </f:for>
+            </f:then>
+            <f:else>
+                {externalplace}
+            </f:else>
+        </f:if>
+
+        <!-- Creation Date -->
+        <p><f:format.date date="{creationDate}" format="d.m.Y H:i" /></p>
+
+        <!-- News Title -->
+        <h1><neos:contentElement.editable property="title" /></h1>
+
+        <!-- Teaser -->
+        <h3><neos:contentElement.editable property="teaser" /></h3>
+
+        <!-- Main Content from content collection - created by the editor with elements needed like images, videos, etc. -->
+        <f:format.raw value="{main}" />
+
+        <!-- Categories -->
+        <f:if condition="{categories}">
+            <p>Categories:
+                <f:for each="{categories}" as="category">
+                    <neos:link.node node="{category}">{category.properties.title}</neos:link.node>
+                </f:for>
+            </p>
+        </f:if>
+
+        <!-- Author -->
+        <f:if condition="{author}">
+            <p>Author: <neos:link.node node="{author}">{author.title}</neos:link.node></p>
+        </f:if>
+
+        <!-- related News -->
+        <f:if condition="{related}">
+            <p>Related news:
+                <f:for each="{related}" as="relnews">
+                    <neos:link.node node="{relnews}">{relnews.properties.title}</neos:link.node><br />
+                </f:for>
+            </p>
+        </f:if>
+    </div>
+</f:section>
+</html>

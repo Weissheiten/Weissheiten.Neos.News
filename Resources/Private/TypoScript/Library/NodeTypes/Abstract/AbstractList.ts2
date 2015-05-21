@@ -2,7 +2,7 @@
 # configuration is overwritten via @override.configuration in the according implementations (see /Resources/Private/TypoScript/Library/NodeTypes/NewsList.ts2 for example
 prototype(Weissheiten.News:AbstractList) < prototype(TYPO3.Neos:Content){
     newsRequest = ${request.arguments.tag}
-    newsCollection =  ${q(site).find('[instanceof Weissheiten.News:AbstractNews]').get()}
+    newsCollection =  ${q(site).find('[instanceof Weissheiten.News:News]').get()}
 
     # filterByTag - this considers the GET parameter (e.g.: &tag=mysearchtag) - if there is no argument - all news are shown
     @override.filterByTag = ${request.arguments.tag}

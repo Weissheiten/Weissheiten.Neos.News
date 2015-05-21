@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en"
+      xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
+      xmlns:media="http://typo3.org/ns/TYPO3/Media/ViewHelpers"
+      xmlns:neos="http://typo3.org/ns/TYPO3/Neos/ViewHelpers">
+
+<f:section name="eventShort">
+    <f:if condition="{important} == 1">
+        <f:then>
+            <f:render section="doubleTileEntry" arguments="{_all}" />
+        </f:then>
+        <f:else>
+            <f:if condition="{previewThumb}">
+                <f:then>
+                    <f:render section="doubleTileEntry" arguments="{_all}" />
+                </f:then>
+                <f:else>
+                    <f:if condition="{creationDate}">
+                        <f:then>
+                            <div class="col-xs-6 col-sm-3 col-md-6 col-lg-3">
+                                <div class="square-responsive">
+                                    <div class="TileBox TileBoxLeftText">
+                                        <div class="TileBoxTextContent">
+                                            <h2><f:format.date date="{eventDate}" format="d.m.Y" /></h2>
+                                            <h3>
+                                                <f:render section="location" arguments="{place: place, externalplace: externalplace}"></f:render>
+                                            </h3>
+                                            <h2><neos:contentElement.editable property="title" /></h2>
+                                            <p>{previewText -> f:format.raw()}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </f:then>
+                        <f:else>
+                            <div class="col-xs-6 col-sm-3 col-md-6 col-lg-3">
+                                <div class="square-responsive">
+                                    <div class="TileBox">
+                                        <media:image class="img-responsive outletListEntryThumb" asset="{node}" title="{title}" alt="{title}" />
+                                    </div>
+                                </div>
+                            </div>
+                        </f:else>
+                    </f:if>
+                </f:else>
+            </f:if>
+        </f:else>
+    </f:if>
+</f:section>
+
+<f:section name="doubleTileEntry">
+    <f:if condition="{previewThumb}">
+        <f:then>
+            <div class="col-xs-6 col-sm-3 col-md-6 col-lg-3">
+                <div class="square-responsive">
+                    <div class="TileBox TileBoxLeft">
+                        <media:image class="img-responsive outletListEntryThumb" asset="{previewThumb}" title="{title}" alt="{title}" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-6 col-sm-3 col-md-6 col-lg-3">
+                <div class="square-responsive">
+                    <div class="TileBox TileBoxRight">
+                        <div class="TileBoxTextContent">
+                            <h2><f:format.date date="{eventDate}" format="d.m.Y" /></h2>
+                            <h3><f:render section="location" arguments="{place: place, externalplace: externalplace}"></f:render></h3>
+                            <h2><neos:contentElement.editable property="title" /></h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </f:then>
+        <f:else>
+            <div class="col-xs-6 col-sm-3 col-md-6 col-lg-3">
+                <div class="square-responsive">
+                    <div class="TileBox TileBoxLeft TileBoxLeftText">
+                        <div class="TileBoxTextContent">
+                            <h2><f:format.date date="{eventDate}" format="d.m.Y" /></h2>
+                            <h3><f:render section="location" arguments="{place: place, externalplace: externalplace}"></f:render></h3>
+                            <h2><neos:contentElement.editable property="title" /></h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-6 col-sm-3 col-md-6 col-lg-3">
+                <div class="square-responsive">
+                    <div class="TileBox TileBoxRight">
+                        <div class="TileBoxTextContent">
+                            <!--<h3 class="pull-right"> <f:format.date date="{creationDate}" format="d.m.Y" /> </h3>-->
+                            <h4><neos:contentElement.editable property="teaser" /></h4>
+                            <p>{previewText -> f:format.raw()}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </f:else>
+    </f:if>
+</f:section>
+
+<f:section name="location">
+    <f:if condition="{place}">
+        <f:then>
+            <f:for each="{place}" as="location">
+               {location.properties.title}
+            </f:for>
+        </f:then>
+        <f:else>
+            {externalplace}
+        </f:else>
+    </f:if>
+</f:section>
+
+</html>

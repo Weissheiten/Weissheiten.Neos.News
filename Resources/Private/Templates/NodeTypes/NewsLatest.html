@@ -33,7 +33,9 @@
                                 </f:for>
 
                                 <div class="col-xs-12">
-                                    <neos:link.node class="LinkButton" node="{related}" title="mehr News">alle Artikel</neos:link.node>
+                                    <neos:link.node class="LinkButton" node="{related}" title="mehr News">
+                                        <f:if condition="{linktext}"><f:then>{linktext}</f:then><f:else>Alle</f:else></f:if>
+                                    </neos:link.node>
                                 </div>
                             </div>
                         </div>

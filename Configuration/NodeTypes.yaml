@@ -162,6 +162,48 @@
   superTypes:
    - 'Weissheiten.News:AbstractNews'
 
+'Weissheiten.News:Event':
+  superTypes:
+   - 'Weissheiten.News:AbstractNews'
+  ui:
+    label: 'Veranstaltung'
+    icon: 'icon-calendar'
+    group: 'news'
+    inspector:
+      groups:
+        dateplace:
+          label: 'Termin & Ort'
+          position: 15
+  properties:
+    eventDate:
+      type: date
+      defaultValue: 'now'
+      ui:
+        label: 'Veranstaltungsdatum'
+        inspector:
+          group: 'dateplace'
+          position: 5
+          editorOptions:
+            format: 'd-m-Y H:i'
+      validation:
+        'TYPO3.Neos/Validation/DateTimeValidator': []
+    place:
+      type: references
+      ui:
+        label: 'Veranstaltungsort (wenn intern)'
+        inspector:
+          group: 'dateplace'
+          editorOptions:
+            nodeTypes: ['Billardcafe.Home:Outlet']
+    externalplace:
+      type: string
+      defaultValue: ''
+      ui:
+        label: 'Veranstaltungsort (wenn extern)'
+        inlineEditable: false
+        inspector:
+          group: 'dateplace'
+
 # Categories - Subcategories are reflected by creating categories within categories in the tree (see constraints)
 'Weissheiten.News:Category':
   superTypes:
@@ -273,6 +315,20 @@
           group: 'related'
           editorOptions:
             nodeTypes: ['TYPO3.Neos.NodeTypes:Page']
+    linktext:
+      type: string
+      defaultValue: ''
+      ui:
+        label: 'Linktext'
+        inlineEditable: false
+        inspector:
+          group: 'related'
   constraints:
     nodeTypes:
       '*': false
+
+'Weissheiten.News:EventLatest':
+  superTypes: ['Weissheiten.News:NewsLatest']
+  ui:
+    label: 'Veranstaltungsübersicht Teaser'
+    icon: icon-list

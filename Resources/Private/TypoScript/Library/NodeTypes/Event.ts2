@@ -1,0 +1,36 @@
+# Create a new prototype for an alternative way to display the primary content for news
+prototype(Weissheiten.News:Event) < prototype(TYPO3.Neos:Content){
+    // set the template path and section to use
+    templatePath = 'resource://Weissheiten.News/Private/Templates/TypoScriptObjects/EventDetail.html'
+    sectionName = 'eventDetail'
+
+
+    // special event properties
+    eventDate = ${q(node).property('eventDate')}
+    place = ${q(node).property('place')}
+    externalplace = ${q(node).property('externalplace')}
+
+    // General properties
+    creationDate = ${q(node).property('creationDate')}
+    title = ${q(node).property('title')}
+    teaser = ${q(node).property('teaser')}
+
+    // Relation properties
+    categories = ${q(node).property('categories')}
+    author = ${q(node).property('author')}
+    relnews = ${q(node).property('related')}
+    tags = ${q(node).property('tags')}
+
+    main = TYPO3.Neos:ContentCollection{
+        nodePath = 'main'
+    }
+}
+
+# Use the prototype for NewsPrimaryContent (see above) for rendering the PrimaryContent of News Documents
+prototype(TYPO3.Neos:PrimaryContent){
+    event{
+        @position = 'before default'
+        condition = ${q(node).is('[instanceof Weissheiten.News:Event]')}
+        type = 'Weissheiten.News:Event'
+    }
+}
