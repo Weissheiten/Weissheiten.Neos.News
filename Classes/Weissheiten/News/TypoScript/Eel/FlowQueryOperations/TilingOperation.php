@@ -74,7 +74,7 @@ class TilingOperation extends AbstractOperation {
 
             // get all available flavor images
             $flavorImages = $this->assetRepository->findByTag($tag)->toArray();
-
+            shuffle($flavorImages);
             foreach ($nodes as $node) {
                 // Calculate the number of cols reserved
                 $reservedCols = $this->calcColNumber($node);
