@@ -332,3 +332,30 @@
   ui:
     label: 'Veranstaltungsübersicht Teaser'
     icon: icon-list
+
+'Weissheiten.News:EventList':
+  superTypes: ['TYPO3.Neos:Content']
+  ui:
+    label: 'Veranstaltungskalender'
+    icon: icon-list
+    inlineEditable: true
+    group: 'news'
+    inspector:
+      groups:
+        general:
+          label: 'General'
+          position: 10
+        related:
+          label: 'Referenzen'
+  properties:
+    entryPoint:
+      type: reference
+      ui:
+        label: 'Ausgangspunkt'
+        inspector:
+          group: related
+          editorOptions:
+            nodeTypes: ['TYPO3.Neos.NodeTypes:Page']
+  constraints:
+    nodeTypes:
+      '*': false

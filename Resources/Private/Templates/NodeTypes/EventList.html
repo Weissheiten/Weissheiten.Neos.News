@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en"
+      xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
+      xmlns:ts="http://typo3.org/ns/TYPO3/TypoScript/ViewHelpers"
+      xmlns:whnews="http://Weissheiten/News/ViewHelpers">
+
+<f:section name="eventList">
+    <whnews:widget.eventCalendar as="calendarEntries" startingPoint="{startingPoint}">
+        <f:for each="{calendarEntries}" as="calendarEntry">
+            {calendarEntry.properties.title}
+        </f:for>
+    </whnews:widget.eventCalendar>
+</f:section>
+
+</html>

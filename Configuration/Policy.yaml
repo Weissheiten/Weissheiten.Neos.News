@@ -1,0 +1,12 @@
+#                                                                        #
+# Security policy for the Weissheiten.News package                       #
+#                                                                        #
+
+resources:
+  methods:
+    Weissheiten_News_WidgetAction: 'method(Weissheiten\News\ViewHelpers\Widget\Controller\EventCalendarController->indexAction())'
+
+acls:
+  Everybody:
+    methods:
+      Weissheiten_News_WidgetAction: GRANT

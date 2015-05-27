@@ -12,7 +12,7 @@ use TYPO3\Flow\Annotations as Flow;
 use TYPO3\TYPO3CR\Domain\Model\Node;
 use TYPO3\TYPO3CR\Domain\Model\NodeInterface;
 /**
- * EEL sort() operation to sort Nodes
+ * EEL related() operation to find related Nodes
  */
 class RelatedOperation extends AbstractOperation {
     /**

@@ -1,4 +1,7 @@
 TYPO3:
+  Fluid:
+    namespaces:
+      'http://Weissheiten/News/ViewHelpers' : 'Weissheiten\News\ViewHelpers'
   Neos:
     typoScript:
       autoInclude:
@@ -20,6 +23,12 @@ Weissheiten:
       maxNumberOfItems: 6
       tilingCols: 12
       pagination: ~
+      sortProperty: creationDate
+    eventList:
+      maxNumberOfItems: 10000
+      pagination:
+        itemsPerPage: 20
+        maximumNumberOfLinks: 6
       sortProperty: creationDate
     eventLatest:
       maxNumberOfItems: 6

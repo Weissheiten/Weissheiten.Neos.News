@@ -1,0 +1,9 @@
+<f:render section="paginator" arguments="{pagination: pagination}" />
+
+<f:renderChildren arguments="{contentArguments}" />
+
+<f:section name="paginator">
+    <f:widget.link action="index" arguments="{showMonthYear: pagination.previousMonth}">&lt;</f:widget.link>
+    <f:format.date date="{pagination.currentMonth}" format="M Y" />
+    <f:widget.link action="index" arguments="{showMonthYear: pagination.nextMonth}">&gt;</f:widget.link>
+</f:section>
