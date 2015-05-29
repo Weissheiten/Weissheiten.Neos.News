@@ -3,7 +3,15 @@
 <f:renderChildren arguments="{contentArguments}" />
 
 <f:section name="paginator">
-    <f:widget.link action="index" arguments="{showMonthYear: pagination.previousMonth}">&lt;</f:widget.link>
-    <f:format.date date="{pagination.currentMonth}" format="M Y" />
-    <f:widget.link action="index" arguments="{showMonthYear: pagination.nextMonth}">&gt;</f:widget.link>
+    <div class="row calendar-nav">
+        <div class="col-xs-2">
+            <f:widget.link action="index" class="arrow" arguments="{showMonthYear: pagination.previousMonth}">&lt;</f:widget.link>
+        </div>
+        <div class="col-xs-8">
+            <h2><f:format.date date="{pagination.currentMonth}" format="M Y" /></h2>
+        </div>
+        <div class="col-xs-2">
+            <f:widget.link action="index" class="arrow" arguments="{showMonthYear: pagination.nextMonth}">&gt;</f:widget.link>
+        </div>
+    </div>
 </f:section>

@@ -50,7 +50,7 @@ class EventCalendarViewHelper extends AbstractWidgetViewHelper {
      * @param \TYPO3\TYPO3CR\Domain\Model\NodeInterface $startingPoint Starting point for traversing the tree in search of fitting nodes
      * @return string
      */
-    public function render($as, $startingPoint = NULL, $locationFilterNode = NULL) {
+    public function render($as, $calendarEntries = NULL, $locationFilterNode = NULL) {
         $response = $this->initiateSubRequest();
         return $response->getContent();
     }

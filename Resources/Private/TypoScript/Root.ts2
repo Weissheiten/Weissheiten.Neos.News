@@ -10,3 +10,4 @@ include: Library/NodeTypes/Event.ts2
 include: Library/NodeTypes/EventList.ts2
 include: Library/NodeTypes/EventLatest.ts2
 include: Library/NodeTypes/EventShort.ts2
+include: Library/NodeTypes/EventCalendarEntry.ts2

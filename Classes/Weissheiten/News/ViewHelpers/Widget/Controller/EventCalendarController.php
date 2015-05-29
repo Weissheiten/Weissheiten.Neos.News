@@ -11,7 +11,7 @@ use TYPO3\Flow\Utility\Arrays;
 use TYPO3\Fluid\Core\Widget\AbstractWidgetController;
 use TYPO3\TYPO3CR\Exception\PageNotFoundException;
 use TYPO3\TYPO3CR\Domain\Repository\NodeDataRepository;
-
+use TYPO3\Eel\FlowQuery\FlowQuery;
 /**
  * The widget controller for the Node Paginate Widget
  */
@@ -27,9 +27,9 @@ class EventCalendarController extends AbstractWidgetController {
     protected $showMonthYear;
 
     /**
-     * @var \TYPO3\TYPO3CR\Domain\Model\NodeInterface
+     * @var array<\TYPO3\TYPO3CR\Domain\Model\NodeInterface>
      */
-    protected $startingPoint;
+    protected $calendarEntries;
 
     /**
      * @Flow\Inject
@@ -42,7 +42,7 @@ class EventCalendarController extends AbstractWidgetController {
      */
     protected function initializeAction() {
         $this->locationFilterNode = $this->widgetConfiguration['locationFilterNode'] ?: NULL;
-        $this->startingPoint = $this->widgetConfiguration['startingPoint'];
+        $this->calendarEntries = $this->widgetConfiguration['calendarEntries'];
         // set current Month and Year as defaults if nothing is set
         //$this->currentMonth = $this->widgetConfiguration['selectedMonth'] ?: ("n");
         //$this->currentYear = $this->widgetConfiguration['selectedYear'] ?: date("Y");
@@ -56,52 +56,33 @@ class EventCalendarController extends AbstractWidgetController {
     public function indexAction($showMonthYear = null) {
         if($showMonthYear==null){
             $this->showMonthYear = new \DateTime();
-            $this->showMonthYear->modify('first day of this month');
+            // set the time to 0,0,0, to be able to compare with other dates
+            $this->showMonthYear->modify('first day of this month')->setTime(0, 0, 0);
         }
         else{
             $this->showMonthYear = new \DateTime($showMonthYear);
         }
 
+        // This is suboptimal performance wise for a lot of nodes - at the moment there is no nice plain Neos way to filter
+        // in the future this has to be changed to elastic search or a similar approach
+        //$q = new FlowQuery(array($this->startingPoint));
+        //$nodes = $q->children("[instanceof 'Weissheiten.News:Event']")->get();
+        $rnodes = array();
+        // filter the nodes according to the date
+        foreach($this->calendarEntries as $node){
+            $ndate = clone $node->getProperty('eventDate');
+            $ndate->modify('first day of this month')->setTime(0, 0, 0);
 
-        $nodes = $this->nodeDataRepository->findByParentAndNodeType($this->startingPoint->getPath(), 'Weissheiten.News:Event', $this->startingPoint->getContext()->getWorkspace());
-
-        // get all nodes for the given month/year
-        //$nodes = $this->startingPoint->getChildNodes('Weissheiten.News:Event');
-
-        // NodeData Repository => findByParentAndNodeType
-
+            if($ndate==$this->showMonthYear){
+                $rnodes[] = $node;
+            }
+        }
 
         $this->view->assign('contentArguments', array(
-            $this->widgetConfiguration['as'] => $nodes
-        ));
+            $this->widgetConfiguration['as'] => $rnodes)
+        );
 
         $this->view->assign('pagination', $this->buildPagination());
-
-
-        /*
-        $this->currentPage = (integer)$currentPage;
-        if ($this->currentPage < 1) {
-            $this->currentPage = 1;
-        } elseif ($this->currentPage > $this->numberOfPages) {
-            throw new PageNotFoundException();
-        }
-
-        $itemsPerPage = (integer)$this->configuration['itemsPerPage'];
-        if ($this->maximumNumberOfNodes > 0 && $this->maximumNumberOfNodes < $itemsPerPage) {
-            $itemsPerPage = $this->maximumNumberOfNodes;
-        }
-        $offset = ($this->currentPage > 1) ? (integer)($itemsPerPage * ($this->currentPage - 1)) : NULL;
-        if ($this->parentNode === NULL) {
-            $nodes = array_slice($this->nodes, $offset, $itemsPerPage);
-        } else {
-            $nodes = $this->parentNode->getChildNodes($this->nodeTypeFilter, $itemsPerPage, $offset);
-        }*/
-/*
-
-*/
-        /*
-        $this->view->assign('configuration', $this->configuration);
-        */
     }
 
     /**

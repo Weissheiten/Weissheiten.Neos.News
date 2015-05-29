@@ -5,11 +5,27 @@
       xmlns:whnews="http://Weissheiten/News/ViewHelpers">
 
 <f:section name="eventList">
-    <whnews:widget.eventCalendar as="calendarEntries" startingPoint="{startingPoint}">
-        <f:for each="{calendarEntries}" as="calendarEntry">
-            {calendarEntry.properties.title}
-        </f:for>
+    <whnews:widget.eventCalendar as="filteredCalendarEntries" calendarEntries="{calendarEntries}">
+        <div class="row">
+            <div class="newsLatestEntryContainer">
+                <f:for each="{filteredCalendarEntries}" as="calendarEntry">
+                        <ts:render path="itemRenderer" context="{node: calendarEntry}" />
+                </f:for>
+            </div>
+        </div>
     </whnews:widget.eventCalendar>
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $(".TileBoxRight, .TileBoxLeftText").dotdotdot({
+                ellipsis: ' [...]',
+                wrap: 'word',
+                after: null,
+                watch: 'window'
+            });
+        });
+    </script>
+
 </f:section>
 
 </html>
