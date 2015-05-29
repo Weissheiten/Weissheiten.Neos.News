@@ -2,7 +2,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en"
       xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
       xmlns:media="http://typo3.org/ns/TYPO3/Media/ViewHelpers"
-      xmlns:neos="http://typo3.org/ns/TYPO3/Neos/ViewHelpers">
+      xmlns:neos="http://typo3.org/ns/TYPO3/Neos/ViewHelpers"
+      xmlns:ts="http://typo3.org/ns/TYPO3/TypoScript/ViewHelpers">
 
 <f:section name="newsShort">
     <f:if condition="{important} == 1">
@@ -20,15 +21,7 @@
                             <div class="col-xs-6 col-sm-3 col-md-6 col-lg-3">
                                 <div class="square-responsive">
                                     <div class="TileBox TileBoxLeftText">
-                                        <div class="TileBoxTextContent">
-                                            <h3>
-                                                <f:for each="{categories}" as="category">
-                                                    {category.properties.title}
-                                                </f:for>
-                                            </h3>
-                                            <h2><neos:contentElement.editable property="title" /></h2>
-                                            <p>{previewText -> f:format.raw()}</p>
-                                        </div>
+                                        <ts:render path="mainInfo" context="{node: node}" />
                                     </div>
                                 </div>
                             </div>

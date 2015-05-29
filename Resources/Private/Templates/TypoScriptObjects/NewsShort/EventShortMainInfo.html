@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en"
+      xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
+      xmlns:neos="http://typo3.org/ns/TYPO3/Neos/ViewHelpers">
+
+<f:section name="eventShortMainInfo">
+    <div class="TileBoxTextContent">
+        <h2><f:format.date date="{eventDate}" format="d.m.Y" /></h2>
+        <h3>
+            <f:render section="location" arguments="{place: place, externalplace: externalplace}"></f:render>
+        </h3>
+        <h2><neos:contentElement.editable property="title" /></h2>
+        <p>{previewText -> f:format.raw()}</p>
+    </div>
+</f:section>
+
+
+<f:section name="location">
+    <f:if condition="{place}">
+        <f:then>
+            <f:for each="{place}" as="location">
+                {location.properties.title}
+            </f:for>
+        </f:then>
+        <f:else>
+            {externalplace}
+        </f:else>
+    </f:if>
+</f:section>
+
+</html>

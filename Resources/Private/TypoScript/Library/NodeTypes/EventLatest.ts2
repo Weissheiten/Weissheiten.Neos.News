@@ -1,31 +1,18 @@
 // Demo TS2 Implementation including a template to show sorting and paging
-prototype(Weissheiten.News:EventLatest) < prototype(Weissheiten.News:AbstractList){
-    templatePath = 'resource://Weissheiten.News/Private/Templates/NodeTypes/NewsLatest.html'
-    sectionName = 'newsLatest'
-
+prototype(Weissheiten.News:EventLatest)>
+prototype(Weissheiten.News:EventLatest) < prototype(Weissheiten.News:NewsLatest){
+    // overwrite News Collection to only show Events
     newsCollection =  ${q(site).find('[instanceof Weissheiten.News:Event]').get()}
-
-    # sort by the property defined in Configuration/Settings.yaml
-    newsCollection.@process.sort = ${q(value).count() > 0 ? q(value).sort(configuration.sortProperty, 'ASC').get() : value}
-
-    # set the item renderer for each entry in the list
-    itemRenderer = Weissheiten.News:EventShort
 
     # override the abstract configuration with the settings from Configuration/Settings.yaml
     @override.configuration = ${Configuration.setting('Weissheiten.News.eventLatest')}
     configuration = ${configuration}
 
-    related = ${q(node).property('related')}
+    # sort by the property defined in Configuration/Settings.yaml
+    newsCollection.@process.sort = ${q(value).count() > 0 ? q(value).sort(configuration.sortProperty, 'ASC').get() : value}
 
-    #Set to uncached to ensure that pagination works
-    @cache {
-        mode = 'cached'
-        entryIdentifier {
-            node = ${node}
-            editPreviewMode = ${editPreviewMode}
-        }
-        entryTags {
-            1 = ${'Weissheiten.News:Event'}
-        }
+    prototype(Weissheiten.News:NewsShort){
+        // set the appropriate detail renderers for an event
+        mainInfo = Weissheiten.News:EventShortMainInfo
     }
 }

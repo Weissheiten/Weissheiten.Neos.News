@@ -24,7 +24,7 @@
                     <div class="square-responsive">
                         <div class="TileBox TileBoxRight">
                             <div class="TileBoxTextContent">
-                                <h2><f:format.date date="{eventDate}" format="l, d.m.Y" /></h2>
+                                <h2><f:format.date date="{eventDate}" forceLocale="de_DE" cldrFormat="EEEE" />,<br /><f:format.date date="{eventDate}" forceLocale="de_DE" cldrFormat="d. MMMM y" /></h2>
                                 <h3><f:render section="location" arguments="{place: place, externalplace: externalplace}"></f:render></h3>
                                 <h2><neos:contentElement.editable property="title" /></h2>
                             </div>
@@ -37,7 +37,7 @@
                     <div class="square-responsive">
                         <div class="TileBox TileBoxLeft TileBoxLeftText">
                             <div class="TileBoxTextContent">
-                                <h2><f:format.date date="{eventDate}" format="l, d.m.Y" /></h2>
+                                <h2><f:format.date date="{eventDate}" forceLocale="de_DE" cldrFormat="EEEE" />,<br /><f:format.date date="{eventDate}" forceLocale="de_DE" cldrFormat="d. MMMM y" /></h2>
                                 <h3><f:render section="location" arguments="{place: place, externalplace: externalplace}"></f:render></h3>
                                 <h2><neos:contentElement.editable property="title" /></h2>
                             </div>

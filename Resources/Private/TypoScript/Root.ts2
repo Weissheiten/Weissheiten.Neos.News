@@ -11,3 +11,6 @@ include: Library/NodeTypes/EventList.ts2
 include: Library/NodeTypes/EventLatest.ts2
 include: Library/NodeTypes/EventShort.ts2
 include: Library/NodeTypes/EventCalendarEntry.ts2
+
+include: Library/TypoScriptObjects/NewsShortMainInfo.ts2
+include: Library/TypoScriptObjects/EventShortMainInfo.ts2
