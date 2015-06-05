@@ -56,13 +56,7 @@
             <div class="col-xs-6 col-sm-3 col-md-6 col-lg-3">
                 <div class="square-responsive">
                     <div class="TileBox TileBoxRight">
-                        <div class="TileBoxTextContent">
-                            <h3>
-                                <f:for each="{categories}" as="category">
-                                    {category.properties.title}
-                                </f:for><!-- <f:format.date date="{creationDate}" format="d.m.Y" /> --></h3>
-                            <h2><neos:contentElement.editable property="title" /></h2>
-                        </div>
+                        <ts:render path="mainInfo" context="{node: node}" />
                     </div>
                 </div>
             </div>
@@ -71,13 +65,7 @@
             <div class="col-xs-6 col-sm-3 col-md-6 col-lg-3">
                 <div class="square-responsive">
                     <div class="TileBox TileBoxLeft TileBoxLeftText">
-                        <div class="TileBoxTextContent">
-                            <h3>
-                                <f:for each="{categories}" as="category">
-                                    {category.properties.title}
-                                </f:for></h3>
-                            <h2><neos:contentElement.editable property="title" /></h2>
-                        </div>
+                        <ts:render path="mainInfo" context="{node: node}" />
                     </div>
                 </div>
             </div>

@@ -21,7 +21,6 @@ Weissheiten:
       sortProperty: creationDate
     newsLatest:
       maxNumberOfItems: 6
-      tilingCols: 12
       pagination: ~
       sortProperty: creationDate
     eventList:
@@ -32,6 +31,5 @@ Weissheiten:
       sortProperty: creationDate
     eventLatest:
       maxNumberOfItems: 6
-      tilingCols: 12
       pagination: ~
       sortProperty: eventDate

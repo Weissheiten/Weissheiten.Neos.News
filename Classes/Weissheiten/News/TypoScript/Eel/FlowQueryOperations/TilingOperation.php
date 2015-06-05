@@ -61,13 +61,13 @@ class TilingOperation extends AbstractOperation {
      * @return mixed
      */
     public function evaluate(FlowQuery $flowQuery, array $arguments) {
-        if (!isset($arguments[0]) || empty($arguments[0])) {
-            throw new \TYPO3\Eel\FlowQuery\FlowQueryException('tile() needs property amount of columns available for which the news should be distributed', 1332492263);
-        } else {
+        //if (!isset($arguments[0]) || empty($arguments[0])) {
+        //    throw new \TYPO3\Eel\FlowQuery\FlowQueryException('tile() needs property amount of columns available for which the news should be distributed', 1332492263);
+        //} else {
             $nodes = $flowQuery->getContext();
 
             // number of Columns that are available for filling, the last tile is always the "more news" button
-            $colsAvailable = $arguments[0] - 1;
+            //$colsAvailable = $arguments[0] - 1;
 
             // Tag for flavor images
             $tag = $this->tagRepository->findBySearchTerm('FlavorTiles')->getFirst();
@@ -79,19 +79,21 @@ class TilingOperation extends AbstractOperation {
                 // Calculate the number of cols reserved
                 $reservedCols = $this->calcColNumber($node);
                 // substract from available Cols
-                $colsAvailable -= $reservedCols;
+                //$colsAvailable -= $reservedCols;
                 // add the info on how many cols should be rendered to the node
                 //$node->setProperty('newsCols', $reservedCols);
 
                 $tiledNodes[] = $node;
 
-
+                //\TYPO3\Flow\var_dump($flavorImages);
                 // if there is only one tile reserved we also add a flavor image
                 if($reservedCols==1){
-                    $tiledNodes[] = array_pop($flavorImages);
+                    //$tiledNodes[] = array_pop($flavorImages);
+                    $node->setProperty('previewThumb', array_pop($flavorImages));
                     // start over from the first image if the last image was used
                     if(count($flavorImages)<1){
                         $flavorImages = $this->assetRepository->findByTag($tag)->toArray();
+                        shuffle($flavorImages);
                     }
                 }
             }
@@ -100,7 +102,7 @@ class TilingOperation extends AbstractOperation {
             //$tiledNodes[] = array_pop($flavorImages);
 
             $flowQuery->setContext($tiledNodes);
-        }
+        //}
     }
 
     /**
