@@ -124,9 +124,11 @@ class TilingOperation extends AbstractOperation {
             return 2;
         }
         // if the news entry has a preview thumb it receives 2 tiles
+        /*
         if($node->getProperty('previewThumb')!=null) {
             return 2;
         }
+        */
         // else reserve 1 column
         return 1;
     }
