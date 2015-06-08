@@ -89,7 +89,7 @@ class TilingOperation extends AbstractOperation {
                 // if there is only one tile reserved we also add a flavor image
                 if($reservedCols==1){
                     //$tiledNodes[] = array_pop($flavorImages);
-                    $node->setProperty('previewThumb', array_pop($flavorImages));
+                    //$node->setProperty('previewThumb', array_pop($flavorImages));
                     // start over from the first image if the last image was used
                     if(count($flavorImages)<1){
                         $flavorImages = $this->assetRepository->findByTag($tag)->toArray();
