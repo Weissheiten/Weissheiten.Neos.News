@@ -7,7 +7,7 @@ prototype(Weissheiten.News:EventList) < prototype(TYPO3.Neos:Content){
     sectionName = 'eventList'
 
     # set the item renderer for each entry in the list
-    itemRenderer = Weissheiten.News:EventCalendarEntry
+    itemRenderer = Weissheiten.News:EvntCalendarEntry
 
     calendarEntries = ${q(q(node).property('entryPoint')).children("[instanceof 'Weissheiten.News:Event']").sort("eventDate", "ASC")}
 
