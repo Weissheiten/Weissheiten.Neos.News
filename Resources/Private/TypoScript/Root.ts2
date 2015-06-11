@@ -1,16 +1,12 @@
 include: Library/NodeTypes/Author.ts2
 include: Library/NodeTypes/Category.ts2
 include: Library/NodeTypes/Abstract/AbstractList.ts2
+
 include: Library/NodeTypes/NewsDetail.ts2
-include: Library/NodeTypes/NewsShort.ts2
 include: Library/NodeTypes/NewsList.ts2
 include: Library/NodeTypes/NewsLatest.ts2
+
 // relies on News so include afterwards
 include: Library/NodeTypes/Event.ts2
 include: Library/NodeTypes/EventList.ts2
 include: Library/NodeTypes/EventLatest.ts2
-include: Library/NodeTypes/EventShort.ts2
-include: Library/NodeTypes/EventCalendarEntry.ts2
-
-include: Library/TypoScriptObjects/NewsShortMainInfo.ts2
-include: Library/TypoScriptObjects/EventShortMainInfo.ts2
