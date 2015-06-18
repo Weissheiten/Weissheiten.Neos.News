@@ -20,7 +20,7 @@ Weissheiten:
         maximumNumberOfLinks: 6
       sortProperty: creationDate
     newsLatest:
-      maxNumberOfItems: 6
+      maxNumberOfItems: 4
       pagination: ~
       sortProperty: creationDate
     eventList:
