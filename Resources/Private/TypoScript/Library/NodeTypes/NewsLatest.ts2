@@ -6,6 +6,8 @@ prototype(Weissheiten.News:NewsLatest) < prototype(Weissheiten.News:AbstractList
     # set the item renderer for each entry in the list
     itemRenderer = Weissheiten.News:NewsShort
 
+    @override.newsCollection =  ${q(site).find('[instanceof Weissheiten.News:AbstractNews]')}
+
     # override the abstract configuration with the settings from Configuration/Settings.yaml
     @override.configuration = ${Configuration.setting('Weissheiten.News.newsLatest')}
     configuration = ${configuration}
