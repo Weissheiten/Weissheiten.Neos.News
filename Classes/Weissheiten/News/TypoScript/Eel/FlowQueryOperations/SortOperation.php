@@ -49,11 +49,12 @@ class SortOperation extends AbstractOperation {
      * @return mixed
      */
     public function evaluate(FlowQuery $flowQuery, array $arguments) {
+       // \TYPO3\Flow\var_dump($arguments);
         if (!isset($arguments[0]) || empty($arguments[0])) {
             throw new \TYPO3\Eel\FlowQuery\FlowQueryException('sort() needs property name by which nodes should be sorted', 1332492263);
         } else {
             $nodes = $flowQuery->getContext();
-            //\TYPO3\Flow\var_dump('sort');
+
             $sortByPropertyPath = $arguments[0];
             $sortOrder = 'DESC';
             if (isset($arguments[1]) && !empty($arguments[1]) && in_array($arguments[1], array('ASC', 'DESC'))) {
