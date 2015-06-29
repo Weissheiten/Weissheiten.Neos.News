@@ -7,8 +7,10 @@ prototype(Weissheiten.News:NewsLatest) < prototype(Weissheiten.News:AbstractList
     #itemRenderer = Weissheiten.News:NewsShort
 
     # override the abstract configuration with the settings from Configuration/Settings.yaml
+
     @override.configuration = ${Configuration.setting('Weissheiten.News.newsLatest')}
     @override.newsCollection =  ${q(site).find('[instanceof Weissheiten.News:AbstractNews]').get()}
+
 
     related = ${q(node).property('related')}
     linktext = ${q(node).property('linktext')}

@@ -1,0 +1,11 @@
+prototype(Weissheiten.News:NewsCollection) < prototype(TYPO3.TypoScript:Collection){
+    collection = ${newsCollection}
+    configuration = ${configuration}
+    filterByTag = ${filterByTag}
+
+    collection.@process.filterByTag = ${filterByTag != null ? q(value).filter('[tags *= ' + filterByTag + ']').get() : value}
+    # sort by the property defined in Configuration/Settings.yaml
+    collection.@process.sort = ${q(value).count() > 0 ? q(value).sort(configuration.sortProperty, 'DESC').get() : value}
+    # limit the results found according to the configuration in Configuration/Settings.yaml
+    collection.@process.slice = ${q(value).count() > 0 ? q(value).slice(0, String.toInteger(configuration.maxNumberOfItems)).get() : value}
+}
