@@ -8,9 +8,10 @@ prototype(Weissheiten.News:NewsList) < prototype(Weissheiten.News:AbstractList){
 
     # override the abstract configuration with the settings from Configuration/Settings.yaml
     @override.configuration = ${Configuration.setting('Weissheiten.News.newsList')}
-    configuration = ${configuration}
+    @override.newsCollection =  ${q(site).find('[instanceof Weissheiten.News:AbstractNews]').get()}
 
-    # AbstractList already fetches all entries for AbstractNews so we don't need to overwrite that
+    related = ${q(node).property('related')}
+    linktext = ${q(node).property('linktext')}
 
     #Set to uncached to ensure that pagination works
     @cache {

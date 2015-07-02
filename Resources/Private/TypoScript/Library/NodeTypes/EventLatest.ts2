@@ -2,19 +2,7 @@
 prototype(Weissheiten.News:EventLatest)>
 prototype(Weissheiten.News:EventLatest) < prototype(Weissheiten.News:NewsLatest){
     // overwrite News Collection to only show Events
-    newsCollection =  ${q(site).find('[instanceof Weissheiten.News:Event]').get()}
-
-    # override the abstract configuration with the settings from Configuration/Settings.yaml
+    @override.newsCollection =  ${q(site).find('[instanceof Weissheiten.News:Event]').get()}
+    // override the abstract configuration with the settings from Configuration/Settings.yaml
     @override.configuration = ${Configuration.setting('Weissheiten.News.eventLatest')}
-    configuration = ${configuration}
-
-    # sort by the property defined in Configuration/Settings.yaml
-    newsCollection.@process.sort = ${q(value).count() > 0 ? q(value).sort(configuration.sortProperty, 'ASC').get() : value}
-
-    /*
-    prototype(Weissheiten.News:NewsShort){
-        // set the appropriate detail renderers for an event
-        mainInfo = Weissheiten.News:EventShortMainInfo
-    }
-    */
 }
