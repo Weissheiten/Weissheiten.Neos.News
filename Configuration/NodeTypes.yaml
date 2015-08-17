@@ -38,6 +38,7 @@
         'TYPO3.Neos/Validation/DateTimeValidator': []
     archiveDate:
       type: date
+      defaultValue: 'next year'
       ui:
         label: 'Archive date'
         inspector:

@@ -69,14 +69,24 @@ class EventCalendarController extends AbstractWidgetController {
         //$nodes = $q->children("[instanceof 'Weissheiten.News:Event']")->get();
         $rnodes = array();
         // filter the nodes according to the date
-        foreach($this->calendarEntries as $node){
-            $ndate = clone $node->getProperty('eventDate');
-            $ndate->modify('first day of this month')->setTime(0, 0, 0);
 
-            if($ndate==$this->showMonthYear){
-                $rnodes[] = $node;
+        foreach($this->calendarEntries as $node){
+            if(!is_null($node->getProperty('eventDate'))){
+                $ndate = clone $node->getProperty('eventDate');
+                $ndate->modify('first day of this month')->setTime(0, 0, 0);
+
+                if($ndate==$this->showMonthYear){
+                    $rnodes[] = $node;
+                }
+            }
+            else{
+                // Entries without an Event Date are considered recurring and additional info has to be given by the editor in the categories section
+                $rend_nodes[] = $node;
             }
         }
+
+        // merge all hits matching the month with all arrays that have NO date and are therefore weekly or monthly
+        $rnodes = array_merge($rnodes,$rend_nodes);
 
         $this->view->assign('contentArguments', array(
             $this->widgetConfiguration['as'] => $rnodes)
