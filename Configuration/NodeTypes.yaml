@@ -360,3 +360,45 @@
   constraints:
     nodeTypes:
       '*': false
+
+'Weissheiten.News:NewsMedia':
+  abstract: TRUE
+  ui:
+    group: 'news'
+    inspector:
+      groups:
+        media:
+          label: 'Medien'
+          position: 4
+    inlineEditable: TRUE
+  properties:
+    displayStyle:
+      type: string
+      defaultValue: 'poster'
+      ui:
+        label: 'Medienstil'
+        inspector:
+          group: 'media'
+          editor: 'TYPO3.Neos/Inspector/Editors/SelectBoxEditor'
+          editorOptions:
+            values:
+              'poster':
+                label: 'Poster Format'
+              'flavor':
+                label: 'Auflockerungs Format'
+              'gallery':
+                label: 'Galerie Format'
+
+'Weissheiten.News:NewsMediaImage':
+  superTypes:
+    - 'Weissheiten.Neos.Bootstrap:ResponsiveImage'
+    - 'Weissheiten.News:NewsMedia'
+  ui:
+    label: 'Newsbeitrag Bild'
+
+'Weissheiten.News:NewsMediaVideo':
+  superTypes:
+    - 'Weissheiten.Neos.Bootstrap:YouTube'
+    - 'Weissheiten.News:NewsMedia'
+  ui:
+    label: 'Newsbeitrag Video'
