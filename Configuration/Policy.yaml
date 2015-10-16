@@ -2,11 +2,23 @@
 # Security policy for the Weissheiten.News package                       #
 #                                                                        #
 
-resources:
-  methods:
-    Weissheiten_News_WidgetAction: 'method(Weissheiten\News\ViewHelpers\Widget\Controller\EventCalendarController->indexAction())'
+#resources:
+#  methods:
+#    Weissheiten_News_WidgetAction: 'method(Weissheiten\News\ViewHelpers\Widget\Controller\EventCalendarController->indexAction())'
 
-acls:
-  Everybody:
-    methods:
-      Weissheiten_News_WidgetAction: GRANT
+#acls:
+#  Everybody:
+#    methods:
+#      Weissheiten_News_WidgetAction: GRANT
+
+privilegeTargets:
+  TYPO3\Flow\Security\Authorization\Privilege\Method\MethodPrivilege:
+    'Weissheiten.News:EventCalendarControllerActions':
+      matcher: 'method(Weissheiten\News\ViewHelpers\Widget\Controller\EventCalendarController->indexAction())'
+
+roles:
+  'Weissheiten.News:Everybody':
+    privileges:
+      -
+        privilegeTarget: 'Weissheiten.News:EventCalendarControllerActions'
+        permission: GRANT
