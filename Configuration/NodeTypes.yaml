@@ -2,7 +2,7 @@
 'Weissheiten.News:AbstractNews':
   abstract: TRUE
   superTypes:
-    - 'TYPO3.Neos:Document'
+    'TYPO3.Neos:Document' : TRUE
   constraints:
     nodeTypes:
       '*': false
@@ -161,11 +161,11 @@
 
 'Weissheiten.News:News':
   superTypes:
-   - 'Weissheiten.News:AbstractNews'
+    'Weissheiten.News:AbstractNews' : TRUE
 
 'Weissheiten.News:Event':
   superTypes:
-   - 'Weissheiten.News:AbstractNews'
+    'Weissheiten.News:AbstractNews' : TRUE
   ui:
     label: 'Veranstaltung'
     icon: 'icon-calendar'
@@ -208,7 +208,7 @@
 # Categories - Subcategories are reflected by creating categories within categories in the tree (see constraints)
 'Weissheiten.News:Category':
   superTypes:
-   - 'TYPO3.Neos:Document'
+    'TYPO3.Neos:Document' : TRUE
   constraints:
     nodeTypes:
       '*': false
@@ -223,7 +223,7 @@
 
 'Weissheiten.News:Author':
   superTypes:
-   - 'TYPO3.Neos:Document'
+    'TYPO3.Neos:Document' : TRUE
   constraints:
     nodeTypes:
       '*': false
@@ -283,7 +283,8 @@
           group: 'general'
 
 'Weissheiten.News:NewsList':
-  superTypes: ['TYPO3.Neos:Content']
+  superTypes:
+    'TYPO3.Neos:Content' : TRUE
   ui:
     label: 'News list'
     icon: icon-list
@@ -294,7 +295,8 @@
       '*': false
 
 'Weissheiten.News:NewsLatest':
-  superTypes: ['TYPO3.Neos:Content']
+  superTypes:
+    'TYPO3.Neos:Content' : TRUE
   ui:
     label: 'News latest'
     icon: icon-list
@@ -329,13 +331,15 @@
       '*': false
 
 'Weissheiten.News:EventLatest':
-  superTypes: ['Weissheiten.News:NewsLatest']
+  superTypes:
+    'Weissheiten.News:NewsLatest' : TRUE
   ui:
     label: 'Veranstaltungsübersicht Teaser'
     icon: icon-list
 
 'Weissheiten.News:EventList':
-  superTypes: ['TYPO3.Neos:Content']
+  superTypes:
+    'TYPO3.Neos:Content' : TRUE
   ui:
     label: 'Veranstaltungskalender'
     icon: icon-list
@@ -391,14 +395,14 @@
 
 'Weissheiten.News:NewsMediaImage':
   superTypes:
-    - 'Weissheiten.Neos.Bootstrap:ResponsiveImage'
-    - 'Weissheiten.News:NewsMedia'
+    'Weissheiten.Neos.Bootstrap:ResponsiveImage' : TRUE
+    'Weissheiten.News:NewsMedia' : TRUE
   ui:
     label: 'Newsbeitrag Bild'
 
 'Weissheiten.News:NewsMediaVideo':
   superTypes:
-    - 'Weissheiten.Neos.Bootstrap:YouTube'
-    - 'Weissheiten.News:NewsMedia'
+    'Weissheiten.Neos.Bootstrap:YouTube' : TRUE
+    'Weissheiten.News:NewsMedia' : TRUE
   ui:
     label: 'Newsbeitrag Video'
