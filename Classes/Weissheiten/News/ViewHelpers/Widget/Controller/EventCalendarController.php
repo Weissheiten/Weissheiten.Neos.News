@@ -72,24 +72,38 @@ class EventCalendarController extends AbstractWidgetController {
 
         foreach($this->calendarEntries as $node){
             if(!is_null($node->getProperty('eventDate'))){
-                $ndate = clone $node->getProperty('eventDate');
-                $ndate->modify('first day of this month')->setTime(0, 0, 0);
+                // this is a one time event
+                if(is_null($node->getProperty('eventEnd'))){
+                    $ndate = clone $node->getProperty('eventDate');
+                    $ndate->modify('first day of this month')->setTime(0, 0, 0);
 
-                if($ndate==$this->showMonthYear){
-                    $rnodes[] = $node;
+                    if($ndate==$this->showMonthYear){
+                        $rnodes[] = $node;
+                    }
+                }
+                else{
+                    $eventDate = $node->getProperty('eventDate');
+                    $eventEnd = $node->getProperty('eventEnd');
+                    $current = $this->showMonthYear;
+
+                    // if the Event timing is inside the window - show it
+                    if($current->format("Y") >= $eventDate->format("Y") && $current->format("n") >= $eventDate->format("n") && $current->format("n") <= $eventEnd->format("n") && $current->format("Y") <= $eventEnd->format("Y")){
+                        $recurringNodes[] = $node;
+                    }
                 }
             }
             else{
+                // Ignore this node - someone forgot to set an event date and the backend didn't catch it
                 // Entries without an Event Date are considered recurring and additional info has to be given by the editor in the categories section
-                $rend_nodes[] = $node;
+                //$rend_nodes[] = $node;
             }
         }
 
         // merge all hits matching the month with all arrays that have NO date and are therefore weekly or monthly
-        $rnodes = array_merge($rnodes,$rend_nodes);
+        $rnodes = array_merge($rnodes,$recurringNodes);
 
         $this->view->assign('contentArguments', array(
-            $this->widgetConfiguration['as'] => $rnodes)
+                $this->widgetConfiguration['as'] => $rnodes)
         );
 
         $this->view->assign('pagination', $this->buildPagination());
