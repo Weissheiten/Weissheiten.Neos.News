@@ -3,6 +3,7 @@
   abstract: TRUE
   superTypes:
     'TYPO3.Neos:Document' : TRUE
+    'TYPO3.Neos.NodeTypes:ImageMixin': TRUE
   constraints:
     nodeTypes:
       '*': false
@@ -24,20 +25,8 @@
         related:
           label: 'Related'
   properties:
-    creationDate:
-      type: date
-      defaultValue: 'now'
-      ui:
-        label: 'Creation date'
-        inspector:
-          group: 'general'
-          position: 5
-          editorOptions:
-            format: 'd-m-Y H:i'
-      validation:
-        'TYPO3.Neos/Validation/DateTimeValidator': []
     archiveDate:
-      type: date
+      type: DateTime
       defaultValue: 'next year'
       ui:
         label: 'Archive date'
@@ -137,8 +126,7 @@
         reloadIfChanged: FALSE
         inspector:
           group: 'related'
-    previewThumb:
-      type: TYPO3\Media\Domain\Model\ImageVariant
+    image:
       ui:
         label: 'Vorschaubild'
         reloadIfChanged: TRUE
@@ -177,7 +165,7 @@
           position: 15
   properties:
     eventDate:
-      type: date
+      type: DateTime
       defaultValue: 'now'
       ui:
         label: 'Veranstaltungsdatum'
@@ -224,6 +212,7 @@
 'Weissheiten.News:Author':
   superTypes:
     'TYPO3.Neos:Document' : TRUE
+    'TYPO3.Neos.NodeTypes:ImageMixin': TRUE
   constraints:
     nodeTypes:
       '*': false
@@ -272,13 +261,6 @@
           link:
             a: true
           alignment: { }
-        inspector:
-          group: 'general'
-    image:
-      type: TYPO3\Media\Domain\Model\ImageVariant
-      ui:
-        label: 'Author image'
-        reloadIfChanged: TRUE
         inspector:
           group: 'general'
 
