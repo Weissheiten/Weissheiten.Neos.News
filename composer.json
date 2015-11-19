@@ -11,7 +11,7 @@
     },
     "autoload": {
         "psr-0": {
-            "Weissheiten\\News": "Classes"
+            "Weissheiten\\Neos\\News": "Classes"
         }
     }
 }
