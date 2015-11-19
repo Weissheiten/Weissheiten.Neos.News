@@ -1,8 +1,8 @@
 <?php
-namespace Weissheiten\News\ViewHelpers\Widget;
+namespace Weissheiten\Neos\News\ViewHelpers\Widget;
 
 /*                                                                        *
- * This script belongs to the Weissheiten.News package                    *
+ * This script belongs to the Weissheiten.Neos.News package                    *
  *                                                                        */
 
 use TYPO3\Flow\Annotations as Flow;
@@ -38,7 +38,7 @@ class EventCalendarViewHelper extends AbstractWidgetViewHelper {
 
     /**
      * @Flow\Inject
-     * @var \Weissheiten\News\ViewHelpers\Widget\Controller\EventCalendarController
+     * @var \Weissheiten\Neos\News\ViewHelpers\Widget\Controller\EventCalendarController
      */
     protected $controller;
 

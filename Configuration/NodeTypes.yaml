@@ -1,5 +1,5 @@
 # Base Node
-'Weissheiten.News:AbstractNews':
+'Weissheiten.Neos.News:AbstractNews':
   abstract: TRUE
   superTypes:
     'TYPO3.Neos:Document' : TRUE
@@ -101,7 +101,7 @@
         inspector:
           group: 'related'
           editorOptions:
-            nodeTypes: ['Weissheiten.News:Category']
+            nodeTypes: ['Weissheiten.Neos.News:Category']
     author:
       type: reference
       ui:
@@ -109,7 +109,7 @@
         inspector:
           group: 'related'
           editorOptions:
-            nodeTypes: ['Weissheiten.News:Author']
+            nodeTypes: ['Weissheiten.Neos.News:Author']
 
     related:
       type: references
@@ -118,7 +118,7 @@
         inspector:
           group: 'related'
           editorOptions:
-            nodeTypes: ['Weissheiten.News:AbstractNews']
+            nodeTypes: ['Weissheiten.Neos.News:AbstractNews']
     tags:
       type: string
       ui:
@@ -147,13 +147,13 @@
                 enableOriginal: FALSE
                 allowCustom: FALSE
 
-'Weissheiten.News:News':
+'Weissheiten.Neos.News:News':
   superTypes:
-    'Weissheiten.News:AbstractNews' : TRUE
+    'Weissheiten.Neos.News:AbstractNews' : TRUE
 
-'Weissheiten.News:Event':
+'Weissheiten.Neos.News:Event':
   superTypes:
-    'Weissheiten.News:AbstractNews' : TRUE
+    'Weissheiten.Neos.News:AbstractNews' : TRUE
   ui:
     label: 'Veranstaltung'
     icon: 'icon-calendar'
@@ -194,13 +194,13 @@
           group: 'dateplace'
 
 # Categories - Subcategories are reflected by creating categories within categories in the tree (see constraints)
-'Weissheiten.News:Category':
+'Weissheiten.Neos.News:Category':
   superTypes:
     'TYPO3.Neos:Document' : TRUE
   constraints:
     nodeTypes:
       '*': false
-      'Weissheiten.News:Category': true
+      'Weissheiten.Neos.News:Category': true
   ui:
     label: 'Category'
     icon: 'icon-book'
@@ -209,7 +209,7 @@
     main:
       type: 'TYPO3.Neos:ContentCollection'
 
-'Weissheiten.News:Author':
+'Weissheiten.Neos.News:Author':
   superTypes:
     'TYPO3.Neos:Document' : TRUE
     'TYPO3.Neos.NodeTypes:ImageMixin': TRUE
@@ -264,7 +264,7 @@
         inspector:
           group: 'general'
 
-'Weissheiten.News:NewsList':
+'Weissheiten.Neos.News:NewsList':
   superTypes:
     'TYPO3.Neos:Content' : TRUE
   ui:
@@ -276,7 +276,7 @@
     nodeTypes:
       '*': false
 
-'Weissheiten.News:NewsLatest':
+'Weissheiten.Neos.News:NewsLatest':
   superTypes:
     'TYPO3.Neos:Content' : TRUE
   ui:
@@ -312,14 +312,14 @@
     nodeTypes:
       '*': false
 
-'Weissheiten.News:EventLatest':
+'Weissheiten.Neos.News:EventLatest':
   superTypes:
-    'Weissheiten.News:NewsLatest' : TRUE
+    'Weissheiten.Neos.News:NewsLatest' : TRUE
   ui:
     label: 'Veranstaltungsübersicht Teaser'
     icon: icon-list
 
-'Weissheiten.News:EventList':
+'Weissheiten.Neos.News:EventList':
   superTypes:
     'TYPO3.Neos:Content' : TRUE
   ui:
@@ -347,7 +347,7 @@
     nodeTypes:
       '*': false
 
-'Weissheiten.News:NewsMedia':
+'Weissheiten.Neos.News:NewsMedia':
   abstract: TRUE
   ui:
     group: 'news'
@@ -375,16 +375,16 @@
               'gallery':
                 label: 'Galerie Format'
 
-'Weissheiten.News:NewsMediaImage':
+'Weissheiten.Neos.News:NewsMediaImage':
   superTypes:
     'Weissheiten.Neos.Bootstrap:ResponsiveImage' : TRUE
-    'Weissheiten.News:NewsMedia' : TRUE
+    'Weissheiten.Neos.News:NewsMedia' : TRUE
   ui:
     label: 'Newsbeitrag Bild'
 
-'Weissheiten.News:NewsMediaVideo':
+'Weissheiten.Neos.News:NewsMediaVideo':
   superTypes:
     'Weissheiten.Neos.Bootstrap:YouTube' : TRUE
-    'Weissheiten.News:NewsMedia' : TRUE
+    'Weissheiten.Neos.News:NewsMedia' : TRUE
   ui:
     label: 'Newsbeitrag Video'

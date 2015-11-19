@@ -1,8 +1,8 @@
 <?php
-namespace Weissheiten\News\ViewHelpers\Widget\Controller;
+namespace Weissheiten\Neos\News\ViewHelpers\Widget\Controller;
 
 /*                                                                        *
- * This script belongs to the package Weissheiten.News    .               *
+ * This script belongs to the package Weissheiten.Neos.   .               *
  *                                                                        *
  *                                                                        */
 
@@ -66,7 +66,7 @@ class EventCalendarController extends AbstractWidgetController {
         // This is suboptimal performance wise for a lot of nodes - at the moment there is no nice plain Neos way to filter
         // in the future this has to be changed to elastic search or a similar approach
         //$q = new FlowQuery(array($this->startingPoint));
-        //$nodes = $q->children("[instanceof 'Weissheiten.News:Event']")->get();
+        //$nodes = $q->children("[instanceof 'Weissheiten.Neos.News:Event']")->get();
         $rnodes = array();
         // filter the nodes according to the date
 

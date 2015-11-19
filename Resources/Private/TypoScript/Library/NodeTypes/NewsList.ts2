@@ -1,14 +1,11 @@
 // Demo TS2 Implementation including a template to show sorting and paging
-prototype(Weissheiten.News:NewsList) < prototype(Weissheiten.News:AbstractList){
-    templatePath = 'resource://Weissheiten.News/Private/Templates/NodeTypes/NewsList.html'
+prototype(Weissheiten.Neos.News:NewsList) < prototype(Weissheiten.Neos.News:AbstractList){
+    templatePath = 'resource://Weissheiten.Neos.News/Private/Templates/NodeTypes/NewsList.html'
     sectionName = 'newsList'
 
-    # set the item renderer for each entry in the list
-    #itemRenderer = Weissheiten.News:NewsShort
-
     # override the abstract configuration with the settings from Configuration/Settings.yaml
-    @override.configuration = ${Configuration.setting('Weissheiten.News.newsList')}
-    @override.newsCollection =  ${q(site).find('[instanceof Weissheiten.News:AbstractNews]').get()}
+    @override.configuration = ${Configuration.setting('Weissheiten.Neos.News.newsList')}
+    @override.newsCollection =  ${q(site).find('[instanceof Weissheiten.Neos.News:AbstractNews]').get()}
 
     related = ${q(node).property('related')}
     linktext = ${q(node).property('linktext')}

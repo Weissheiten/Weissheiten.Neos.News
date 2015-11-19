@@ -1,12 +1,12 @@
 # Create a new prototype for an alternative way to display the primary content for news
-prototype(Weissheiten.News:CategoryDetail) < prototype(TYPO3.Neos:Content){
+prototype(Weissheiten.Neos.News:CategoryDetail) < prototype(TYPO3.Neos:Content){
     // set the template path and section to use
-    templatePath = 'resource://Weissheiten.News/Private/Templates/TypoScriptObjects/CategoryDetail.html'
+    templatePath = 'resource://Weissheiten.Neos.News/Private/Templates/TypoScriptObjects/CategoryDetail.html'
     sectionName = 'categoryDetail'
 
     // Category details
     title = ${q(node).property('_name')}
-    nods = ${q(site).find('[instanceof Weissheiten.News:AbstractNews]').add(q(node)).related('categories').get()}
+    nods = ${q(site).find('[instanceof Weissheiten.Neos.News:AbstractNews]').add(q(node)).related('categories').get()}
     main = TYPO3.Neos:ContentCollection{
         nodePath = 'main'
     }
@@ -16,7 +16,7 @@ prototype(Weissheiten.News:CategoryDetail) < prototype(TYPO3.Neos:Content){
 prototype(TYPO3.Neos:PrimaryContent){
     category{
         @position = 'before default'
-        condition = ${q(node).is('[instanceof Weissheiten.News:Category]')}
-        type = 'Weissheiten.News:CategoryDetail'
+        condition = ${q(node).is('[instanceof Weissheiten.Neos.News:Category]')}
+        type = 'Weissheiten.Neos.News:CategoryDetail'
     }
 }

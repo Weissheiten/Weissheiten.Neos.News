@@ -1,7 +1,7 @@
 # Create a new prototype for an alternative way to display the primary content for news
-prototype(Weissheiten.News:NewsDetail) < prototype(TYPO3.Neos:Content){
+prototype(Weissheiten.Neos.News:NewsDetail) < prototype(TYPO3.Neos:Content){
     // set the template path and section to use
-    templatePath = 'resource://Weissheiten.News/Private/Templates/TypoScriptObjects/NewsDetail.html'
+    templatePath = 'resource://Weissheiten.Neos.News/Private/Templates/TypoScriptObjects/NewsDetail.html'
     sectionName = 'newsDetail'
 
     // General properties
@@ -24,7 +24,7 @@ prototype(Weissheiten.News:NewsDetail) < prototype(TYPO3.Neos:Content){
 prototype(TYPO3.Neos:PrimaryContent){
     news{
         @position = 'before default'
-        condition = ${q(node).is('[instanceof Weissheiten.News:News]')}
-        type = 'Weissheiten.News:NewsDetail'
+        condition = ${q(node).is('[instanceof Weissheiten.Neos.News:News]')}
+        type = 'Weissheiten.Neos.News:NewsDetail'
     }
 }

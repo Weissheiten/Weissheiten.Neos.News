@@ -1,5 +1,5 @@
 <?php
-namespace Weissheiten\News\TypoScript\Eel\FlowQueryOperations;
+namespace Weissheiten\Neos\News\TypoScript\Eel\FlowQueryOperations;
 
 /*                                                                        *
  * This script is used from the TYPO3 Flow package "Sfi.News".            *

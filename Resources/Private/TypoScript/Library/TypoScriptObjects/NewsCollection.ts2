@@ -1,5 +1,5 @@
 // NewsCollection for broader use, allows for overriding the FlowQuery for retrieval and also the configuration regarding the displaying
-prototype(Weissheiten.News:NewsCollection) < prototype(TYPO3.TypoScript:Collection){
+prototype(Weissheiten.Neos.News:NewsCollection) < prototype(TYPO3.TypoScript:Collection){
     collection = ${newsCollection}
     configuration = ${configuration}
     filterByTag = ${filterByTag}

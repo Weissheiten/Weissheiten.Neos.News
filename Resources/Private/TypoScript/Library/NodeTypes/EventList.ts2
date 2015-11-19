@@ -1,15 +1,11 @@
 // Demo TS2 Implementation including a template to show sorting and paging
-prototype(Weissheiten.News:EventList) < prototype(TYPO3.Neos:Content){
+prototype(Weissheiten.Neos.News:EventList) < prototype(TYPO3.Neos:Content){
     newsRequest = ${request.arguments.tag}
-    //newsCollection =  ${q(site).find('[instanceof Weissheiten.News:News]').get()}
 
-    templatePath = 'resource://Weissheiten.News/Private/Templates/NodeTypes/EventList.html'
+    templatePath = 'resource://Weissheiten.Neos.News/Private/Templates/NodeTypes/EventList.html'
     sectionName = 'eventList'
 
-    # set the item renderer for each entry in the list
-    #itemRenderer = Weissheiten.News:EvntCalendarEntry
-
-    calendarEntries = ${q(q(node).property('entryPoint')).children("[instanceof 'Weissheiten.News:Event']").sort("eventDate", "ASC")}
+    calendarEntries = ${q(q(node).property('entryPoint')).children("[instanceof 'Weissheiten.Neos.News:Event']").sort("eventDate", "ASC")}
 
     #Set to uncached to ensure that pagination works
     @cache {

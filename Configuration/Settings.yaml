@@ -1,11 +1,11 @@
 TYPO3:
   Fluid:
     namespaces:
-      'http://Weissheiten/News/ViewHelpers' : 'Weissheiten\News\ViewHelpers'
+      'http://Weissheiten/Neos/News/ViewHelpers' : 'Weissheiten\Neos\News\ViewHelpers'
   Neos:
     typoScript:
       autoInclude:
-        'Weissheiten.News': TRUE
+        'Weissheiten.Neos.News': TRUE
     nodeTypes:
       groups:
         news:

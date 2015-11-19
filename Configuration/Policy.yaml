@@ -1,10 +1,10 @@
 #                                                                        #
-# Security policy for the Weissheiten.News package                       #
+# Security policy for the Weissheiten.Neos.News package                       #
 #                                                                        #
 
 #resources:
 #  methods:
-#    Weissheiten_News_WidgetAction: 'method(Weissheiten\News\ViewHelpers\Widget\Controller\EventCalendarController->indexAction())'
+#    Weissheiten_News_WidgetAction: 'method(Weissheiten\Neos\News\ViewHelpers\Widget\Controller\EventCalendarController->indexAction())'
 
 #acls:
 #  Everybody:
@@ -13,12 +13,12 @@
 
 privilegeTargets:
   TYPO3\Flow\Security\Authorization\Privilege\Method\MethodPrivilege:
-    'Weissheiten.News:EventCalendarControllerActions':
-      matcher: 'method(Weissheiten\News\ViewHelpers\Widget\Controller\EventCalendarController->indexAction())'
+    'Weissheiten.Neos.News:EventCalendarControllerActions':
+      matcher: 'method(Weissheiten\Neos\News\ViewHelpers\Widget\Controller\EventCalendarController->indexAction())'
 
 roles:
-  'Weissheiten.News:Everybody':
+  'TYPO3.Flow:Everybody':
     privileges:
       -
-        privilegeTarget: 'Weissheiten.News:EventCalendarControllerActions'
+        privilegeTarget: 'Weissheiten.Neos.News:EventCalendarControllerActions'
         permission: GRANT

@@ -1,8 +1,8 @@
 <?php
-namespace Weissheiten\News\TypoScript\Eel\FlowQueryOperations;
+namespace Weissheiten\Neos\News\TypoScript\Eel\FlowQueryOperations;
 
 /*                                                                              *
- * This script belongs to the TYPO3 Flow package "Weissheiten.News".            *
+ * This script belongs to the TYPO3 Flow package "Weissheiten.Neos.News".            *
  * base code from dimaip news extension (https://github.com/sfi-ru/Sfi.News)    *
  *                                                                              */
 

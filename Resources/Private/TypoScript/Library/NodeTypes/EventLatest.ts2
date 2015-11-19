@@ -1,8 +1,8 @@
 // Demo TS2 Implementation including a template to show sorting and paging
-prototype(Weissheiten.News:EventLatest)>
-prototype(Weissheiten.News:EventLatest) < prototype(Weissheiten.News:NewsLatest){
+prototype(Weissheiten.Neos.News:EventLatest)>
+prototype(Weissheiten.Neos.News:EventLatest) < prototype(Weissheiten.Neos.News:NewsLatest){
     // overwrite News Collection to only show Events
-    @override.newsCollection =  ${q(site).find('[instanceof Weissheiten.News:Event]').get()}
+    @override.newsCollection =  ${q(site).find('[instanceof Weissheiten.Neos.News:Event]').get()}
     // override the abstract configuration with the settings from Configuration/Settings.yaml
-    @override.configuration = ${Configuration.setting('Weissheiten.News.eventLatest')}
+    @override.configuration = ${Configuration.setting('Weissheiten.Neos.News.eventLatest')}
 }
