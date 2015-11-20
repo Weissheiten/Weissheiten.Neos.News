@@ -10,6 +10,13 @@
   childNodes:
     main:
       type: 'TYPO3.Neos:ContentCollection'
+      constraints:
+        nodeTypes:
+          '*': false
+          'Weissheiten.Neos.News:NewsMediaImage': TRUE
+          'Weissheiten.Neos.Bootstrap:Carousel' : TRUE
+          'Weissheiten.Neos.News:NewsMediaVideo': TRUE
+          'TYPO3.Neos.NodeTypes:Text': TRUE
   ui:
     label: 'News Item'
     icon: 'icon-edit'
@@ -131,7 +138,6 @@
         label: 'Vorschaubild'
         reloadIfChanged: TRUE
         inspector:
-          group: 'media'
           editorOptions:
             features:
               crop: TRUE
@@ -211,7 +217,7 @@
 
 'Weissheiten.Neos.News:Author':
   superTypes:
-    'TYPO3.Neos:Document' : TRUE
+    'TYPO3.Neos:Document': TRUE
     'TYPO3.Neos.NodeTypes:ImageMixin': TRUE
   constraints:
     nodeTypes:
@@ -224,9 +230,7 @@
       groups:
         general:
           label: 'General'
-          position: 15
-        related:
-          label: 'Related'
+          position: 5
   childNodes:
     main:
       type: 'TYPO3.Neos:ContentCollection'
@@ -234,16 +238,16 @@
     name:
       type: string
       ui:
-        label: 'Author name'
+        label: 'Autoren Name'
         inspector:
           group: 'general'
     email:
       type: string
       ui:
-        label: 'Author email'
+        label: 'Autoren E-Mail'
         inlineEditable: true
         aloha:
-          placeholder: 'Author email'
+          placeholder: 'Autoren E-Mail'
           format:
             b: false
             i: false
@@ -263,6 +267,25 @@
           alignment: { }
         inspector:
           group: 'general'
+    image:
+      ui:
+        label: 'Autoren Bild'
+        reloadIfChanged: TRUE
+        inspector:
+          editorOptions:
+            features:
+              crop: TRUE
+              resize: FALSE
+            crop:
+              aspectRatio:
+                options:
+                  fourFive: ~
+                  fiveSeven: ~
+                  twoThree: ~
+                  fourThree: ~
+                  sixteenNine: ~
+                enableOriginal: FALSE
+                allowCustom: FALSE
 
 'Weissheiten.Neos.News:NewsList':
   superTypes:
@@ -372,8 +395,6 @@
                 label: 'Poster Format'
               'flavor':
                 label: 'Auflockerungs Format'
-              'gallery':
-                label: 'Galerie Format'
 
 'Weissheiten.Neos.News:NewsMediaImage':
   superTypes:
@@ -381,6 +402,13 @@
     'Weissheiten.Neos.News:NewsMedia' : TRUE
   ui:
     label: 'Newsbeitrag Bild'
+  properties:
+    imageStyle:
+      ui: ~
+    alignment:
+      ui: ~
+    responsive:
+      ui: ~
 
 'Weissheiten.Neos.News:NewsMediaVideo':
   superTypes:

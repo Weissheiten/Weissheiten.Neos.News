@@ -1,0 +1,1 @@
+prototype(Weissheiten.News:NewsMediaImage) < prototype(Weissheiten.Neos.Bootstrap:ResponsiveImage)
