@@ -182,6 +182,18 @@
             format: 'd-m-Y H:i'
       validation:
         'TYPO3.Neos/Validation/DateTimeValidator': []
+    eventEnd:
+      type: DateTime
+      defaultValue: 'now'
+      ui:
+        label: 'Veranstaltungsende'
+        inspector:
+          group: 'dateplace'
+          position: 6
+          editorOptions:
+            format: 'd-m-Y H:i'
+      validation:
+        'TYPO3.Neos/Validation/DateTimeValidator': []
     place:
       type: references
       ui:

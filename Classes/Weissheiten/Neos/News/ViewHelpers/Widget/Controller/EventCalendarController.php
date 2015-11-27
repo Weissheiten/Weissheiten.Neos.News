@@ -68,6 +68,7 @@ class EventCalendarController extends AbstractWidgetController {
         //$q = new FlowQuery(array($this->startingPoint));
         //$nodes = $q->children("[instanceof 'Weissheiten.Neos.News:Event']")->get();
         $rnodes = array();
+        $recurringNodes = array();
         // filter the nodes according to the date
 
         foreach($this->calendarEntries as $node){
