@@ -83,12 +83,12 @@ class EventCalendarController extends AbstractWidgetController {
                     }
                 }
                 else{
-                    $eventDate = $node->getProperty('eventDate');
-                    $eventEnd = $node->getProperty('eventEnd');
+                    $eventDate = $node->getProperty('eventDate')->modify('first day of this month')->setTime(0, 0, 0);;
+                    $eventEnd = $node->getProperty('eventEnd')->modify('first day of this month')->setTime(0, 0, 0);;
                     $current = $this->showMonthYear;
 
                     // if the Event timing is inside the window - show it
-                    if($current->format("Y") >= $eventDate->format("Y") && $current->format("n") >= $eventDate->format("n") && $current->format("n") <= $eventEnd->format("n") && $current->format("Y") <= $eventEnd->format("Y")){
+                    if($current>=$eventDate && $current<=$eventEnd){
                         $recurringNodes[] = $node;
                     }
                 }
