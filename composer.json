@@ -1,7 +1,6 @@
 {
     "name": "weissheiten/neos-news",
     "type": "typo3-flow-plugin",
-    "version": "dev-master",
     "description": "News package for Weissheiten projects",
     "keywords": ["bootstrap", "neos"],
     "license": "GPL-3.0+",
