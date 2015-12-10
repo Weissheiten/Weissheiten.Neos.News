@@ -12,7 +12,7 @@
       type: 'TYPO3.Neos:ContentCollection'
       constraints:
         nodeTypes:
-          '*': false
+          '*': FALSE
           'Weissheiten.Neos.News:NewsMediaImage': TRUE
           'Weissheiten.Neos.Bootstrap:Carousel' : TRUE
           'Weissheiten.Neos.News:NewsMediaVideo': TRUE
