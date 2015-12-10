@@ -76,10 +76,10 @@ class SortOperation extends AbstractOperation {
     /**
      * {@inheritdoc}
      *
-     * Can handle TYPO3CR NodeTypes or returns false if an empty context is given
+     * Can handle TYPO3CR NodeTypes, also works with an empty context
      *
      * @param array (or array-like object) $context onto which this operation should be applied
-     * @return boolean TRUE if the operation can be applied onto the $context, FALSE otherwise     
+     * @return boolean TRUE if the operation can be applied onto the $context, FALSE otherwise
      */
     public function canEvaluate($context) {
         if (count($context) === 0) {
