@@ -32,24 +32,11 @@ class SortOperation extends AbstractOperation {
     /**
      * {@inheritdoc}
      *
-     * We can only handle TYPO3CR Nodes.
-     *
-     * @param mixed $context
-     * @return boolean
-     */
-    public function canEvaluate($context) {
-        return (isset($context[0]) && ($context[0] instanceof NodeInterface));
-    }
-
-    /**
-     * {@inheritdoc}
-     *
      * @param FlowQuery $flowQuery the FlowQuery object
      * @param array $arguments the arguments for this operation
      * @return mixed
      */
     public function evaluate(FlowQuery $flowQuery, array $arguments) {
-       // \TYPO3\Flow\var_dump($arguments);
         if (!isset($arguments[0]) || empty($arguments[0])) {
             throw new \TYPO3\Eel\FlowQuery\FlowQueryException('sort() needs property name by which nodes should be sorted', 1332492263);
         } else {
@@ -84,5 +71,26 @@ class SortOperation extends AbstractOperation {
             }
             $flowQuery->setContext($sortedNodes);
         }
+    }
+
+    /**
+     * {@inheritdoc}
+     *
+     * Can handle TYPO3CR NodeTypes or returns false if an empty context is given
+     *
+     * @param array (or array-like object) $context onto which this operation should be applied
+     * @return boolean TRUE if the operation can be applied onto the $context, FALSE otherwise     
+     */
+    public function canEvaluate($context) {
+        if (count($context) === 0) {
+            return true;
+        }
+
+        foreach ($context as $contextNode) {
+            if (!$contextNode instanceof NodeInterface) {
+                return false;
+            }
+        }
+        return true;
     }
 }

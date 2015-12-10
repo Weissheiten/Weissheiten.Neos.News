@@ -12,24 +12,25 @@ TYPO3:
           position: 280
           label: 'Weissheiten News'
 Weissheiten:
-  News:
-    newsList:
-      maxNumberOfItems: 10000
-      pagination:
-        itemsPerPage: 2
-        maximumNumberOfLinks: 6
-      sortProperty: creationDate
-    newsLatest:
-      maxNumberOfItems: 4
-      pagination: ~
-      sortProperty: creationDate
-    eventList:
-      maxNumberOfItems: 10000
-      pagination:
-        itemsPerPage: 20
-        maximumNumberOfLinks: 6
-      sortProperty: creationDate
-    eventLatest:
-      maxNumberOfItems: 10
-      pagination: ~
-      sortProperty: eventDate
+  Neos:
+    News:
+      newsList:
+        maxNumberOfItems: 10000
+        pagination:
+          itemsPerPage: 2
+          maximumNumberOfLinks: 6
+        sortProperty: creationDate
+      newsLatest:
+        maxNumberOfItems: 4
+        pagination: ~
+        sortProperty: creationDate
+      eventList:
+        maxNumberOfItems: 10000
+        pagination:
+          itemsPerPage: 20
+          maximumNumberOfLinks: 6
+        sortProperty: creationDate
+      eventLatest:
+        maxNumberOfItems: 10
+        pagination: ~
+        sortProperty: eventDate
