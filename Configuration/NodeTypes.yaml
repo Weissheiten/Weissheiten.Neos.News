@@ -340,6 +340,7 @@
       defaultValue: ''
       ui:
         label: 'Linktext'
+        reloadIfChanged: TRUE
         inlineEditable: false
         inspector:
           group: 'related'

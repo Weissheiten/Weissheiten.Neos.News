@@ -33,13 +33,22 @@ class FilterByDateOperation extends AbstractOperation {
     /**
      * {@inheritdoc}
      *
-     * We can only handle TYPO3CR Nodes.
+     * Can handle TYPO3CR NodeTypes, also works with an empty context
      *
-     * @param mixed $context
-     * @return boolean
+     * @param array (or array-like object) $context onto which this operation should be applied
+     * @return boolean TRUE if the operation can be applied onto the $context, FALSE otherwise
      */
     public function canEvaluate($context) {
-        return (isset($context[0]) && ($context[0] instanceof NodeInterface));
+        if (count($context) === 0) {
+            return true;
+        }
+
+        foreach ($context as $contextNode) {
+            if (!$contextNode instanceof NodeInterface) {
+                return false;
+            }
+        }
+        return true;
     }
 
     /**
