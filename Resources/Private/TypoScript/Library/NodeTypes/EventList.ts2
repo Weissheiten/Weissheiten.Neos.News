@@ -5,7 +5,7 @@ prototype(Weissheiten.Neos.News:EventList) < prototype(TYPO3.Neos:Content){
     templatePath = 'resource://Weissheiten.Neos.News/Private/Templates/NodeTypes/EventList.html'
     sectionName = 'eventList'
 
-    calendarEntries = ${q(node).property('entryPoint') == null ? q(site).find("[instanceof 'Weissheiten.Neos.News:Event']").sort("eventDate", "ASC") : q(q(node).property('entryPoint')).find("[instanceof 'Weissheiten.Neos.News:Event']").sort("eventDate", "ASC")}
+    calendarEntries = ${q(node).property('entryPoint') == null ? q(site).find("[instanceof 'Weissheiten.Neos.News:Event']").filterByDate('archiveDate', Date.Now(),'>').sort("eventDate", "ASC") : q(q(node).property('entryPoint')).find("[instanceof 'Weissheiten.Neos.News:Event']").filterByDate('archiveDate', Date.Now(),'>').sort("eventDate", "ASC")}
 
     #Set to uncached to ensure that pagination works
     @cache {

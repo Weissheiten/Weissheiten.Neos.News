@@ -311,6 +311,12 @@
     nodeTypes:
       '*': false
 
+'Weissheiten.Neos.News:NewsArchive':
+  superTypes:
+    'Weissheiten.Neos.News:NewsList': TRUE
+  ui:
+    label: 'News archive'
+
 'Weissheiten.Neos.News:NewsLatest':
   superTypes:
     'TYPO3.Neos:Content' : TRUE

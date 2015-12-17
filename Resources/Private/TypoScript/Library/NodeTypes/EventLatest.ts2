@@ -2,7 +2,7 @@
 prototype(Weissheiten.Neos.News:EventLatest)>
 prototype(Weissheiten.Neos.News:EventLatest) < prototype(Weissheiten.Neos.News:NewsLatest){
     // overwrite News Collection to only show Events
-    @override.newsCollection =  ${q(site).find('[instanceof Weissheiten.Neos.News:Event]').get()}
+    @override.newsCollection =  ${q(site).find('[instanceof Weissheiten.Neos.News:Event]').filterByDate('archiveDate', Date.Now(),'>').get()}
     // override the abstract configuration with the settings from Configuration/Settings.yaml
     @override.configuration = ${Configuration.setting('Weissheiten.Neos.News.eventLatest')}
 }

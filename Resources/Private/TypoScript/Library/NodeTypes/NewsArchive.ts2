@@ -1,0 +1,3 @@
+prototype(Weissheiten.Neos.News:NewsArchive) < prototype(Weissheiten.Neos.News:NewsList){
+    @override.newsCollection =  ${q(site).find('[instanceof Weissheiten.Neos.News:AbstractNews]').filterByDate('archiveDate', Date.Now(),'<').get()}
+}
