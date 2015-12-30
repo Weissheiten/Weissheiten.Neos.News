@@ -1,6 +1,6 @@
 # Base Node
 'Weissheiten.Neos.News:AbstractNews':
-  label: "${(q(node).filterByDate('archiveDate', Date.Now(),'>').count()) > 0 ? q(node).property('title') : '[Archiviert] ' + q(node).property('title')}"
+  label: "${(q(node).filterByDate('archiveDate', Date.Now(),'>').count()) > 0 ? q(node).property('title') : '[Archived] ' + q(node).property('title')}"
   abstract: TRUE
   superTypes:
     'TYPO3.Neos:Document' : TRUE
