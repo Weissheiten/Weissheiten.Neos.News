@@ -1,5 +1,6 @@
 # Base Node
 'Weissheiten.Neos.News:AbstractNews':
+  label: "${(q(node).filterByDate('archiveDate', Date.Now(),'>').count()) > 0 ? q(node).property('title') : '[Archiviert] ' + q(node).property('title')}"
   abstract: TRUE
   superTypes:
     'TYPO3.Neos:Document' : TRUE
@@ -32,6 +33,18 @@
         related:
           label: 'Related'
   properties:
+    sortDate:
+      type: DateTime
+      defaultValue: 'now'
+      ui:
+        label: 'Sort date'
+        inspector:
+          group: 'general'
+          position: 9
+          editorOptions:
+            format: 'd-m-Y H:i'
+      validation:
+        'TYPO3.Neos/Validation/DateTimeValidator': []
     archiveDate:
       type: DateTime
       defaultValue: 'next year'
