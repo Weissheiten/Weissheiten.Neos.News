@@ -7,6 +7,8 @@ prototype(Weissheiten.Neos.News:Event) < prototype(TYPO3.Neos:Content){
 
     // special event properties
     eventDate = ${q(node).property('eventDate')}
+    eventEnd = ${q(node).property('eventEnd')}
+
     place = ${q(node).property('place')}
     externalplace = ${q(node).property('externalplace')}
 
