@@ -17,7 +17,7 @@
           'Weissheiten.Neos.News:NewsMediaImage': TRUE
           'Weissheiten.Neos.Bootstrap:Carousel' : TRUE
           'Weissheiten.Neos.News:NewsMediaVideo': TRUE
-          'TYPO3.Neos.NodeTypes:Text': TRUE
+          'Weissheiten.Neos.News:NewsText': TRUE
   ui:
     label: 'News Item'
     icon: 'icon-edit'
@@ -401,6 +401,52 @@
   constraints:
     nodeTypes:
       '*': false
+
+'Weissheiten.Neos.News:NewsText':
+  superTypes:
+    'TYPO3.Neos.NodeTypes:Text': TRUE
+  ui:
+    group: 'news'
+    label: NewsText
+    icon: 'icon-file-text'
+  properties:
+    text:
+      ui:
+        position: 200
+        aloha:
+          'format': # Enable specific formatting options.
+            'strong': true
+            'b': false
+            'em': true
+            'i': false
+            'u': true
+            'sub': false
+            'sup': false
+            'p': true
+            'h1': false
+            'h2': false
+            'h3': false
+            'h4': true
+            'h5': true
+            'h6': true
+            'code': false
+            'removeFormat': true
+          'table':
+            'table': true
+          'link':
+            'a': true
+          'list':
+            'ul': true
+            'ol': true
+          'alignment':
+            'left': true
+            'center': true
+            'right': true
+            'justify': true
+          'formatlesspaste':
+            'button': true # Show toggle button for formatless pasting.
+            'formatlessPasteOption': true # Whether the format less pasting should be enable by default.
+            'autoparagraph': true # Automatically wrap non-wrapped text blocks in paragraph blocks.
 
 'Weissheiten.Neos.News:NewsMedia':
   abstract: TRUE
