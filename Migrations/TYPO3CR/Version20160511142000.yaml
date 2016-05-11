@@ -1,0 +1,40 @@
+up:
+  comments: 'Migrate Textnodes inside news to new NewsText content type.'
+  migration:
+    -
+      filters:
+        -
+          type: 'NodeType'
+          settings:
+            nodeType: 'TYPO3.Neos.NodeTypes:Text'
+        -
+          type: '\Weissheiten\Neos\NodeMigration\Migration\Filters\HasParentOfNodeType'
+          settings:
+            nodeType: 'Weissheiten.Neos.News:AbstractNews'
+            searchDepth: 2
+            withSubTypes: true
+      transformations:
+        -
+          type: 'ChangeNodeType'
+          settings:
+            newType: 'Weissheiten.Neos.News:NewsText'
+
+down:
+  comments: 'Migrate NewsText Nodes to standard text content type.'
+  migration:
+    -
+      filters:
+         -
+           type: 'NodeType'
+           settings:
+             nodeType: 'Weissheiten.Neos.News:NewsText'
+         -
+           type: '\Weissheiten\Neos\NodeMigration\Migration\Filters\HasParentOfNodeType'
+           settings:
+             nodeType: 'Weissheiten.Neos.News:AbstractNews'
+             withSubTypes: true
+      transformations:
+         -
+           type: 'ChangeNodeType'
+           settings:
+             newType: 'TYPO3.Neos.NodeTypes:Text'
