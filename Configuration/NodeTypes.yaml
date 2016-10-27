@@ -197,7 +197,6 @@
         'TYPO3.Neos/Validation/DateTimeValidator': []
     eventEnd:
       type: DateTime
-      defaultValue: 'now'
       ui:
         label: 'Veranstaltungsende'
         inspector:
