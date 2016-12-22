@@ -18,7 +18,8 @@ prototype(Weissheiten.Neos.News:NewsLatest) < prototype(Weissheiten.Neos.News:Ab
             editPreviewMode = ${editPreviewMode}
         }
         entryTags {
-            1 = ${'Weissheiten.Neos.News:News'}
+            1 = ${'Node_' + node.identifier}
+            2 = ${'Weissheiten.Neos.News:News'}
         }
     }
 }
