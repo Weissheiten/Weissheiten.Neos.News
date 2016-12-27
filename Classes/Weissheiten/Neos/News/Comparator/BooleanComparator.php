@@ -16,19 +16,32 @@ class BooleanComparator implements IComparator{
      */
     function execute($a, $b, $propertyName, $order)
     {
-        if(is_bool($a->getProperty($propertyName)) && is_bool($b->getProperty($propertyName))){
+        $a_value = $a->getProperty($propertyName);
+        $b_value = $b->getProperty($propertyName);
+
+        // null is considered false for comparison
+        if($a_value===null){
+            $a_value = false;
+        }
+
+        if($b_value===null){
+            $b_value = false;
+        }
+
+        if(is_bool($a_value) && is_bool($b_value)){
             if($order){
-                return $b[$propertyName] - $a[$propertyName];
+                return $a_value -  $b_value ;
             }
             else{
-                return $a[$propertyName] - $b[$propertyName];
+                return  $b_value  - $a_value;
             }
         }
 
-        throw new ComparatorException(sprintf('Expected comparison for type Boolean for nodes of type '
-            . $a->getNodeType()->getName()
-            . ' and '
-            .$b->getNodeType()->getName()
-            .' in property %s', $propertyName, 1482424087));
+        // if no result is reached by now one of the values is neither a boolean, nor null
+        throw new ComparatorException(sprintf('Expected type Boolean for comparison of nodes for NodeTypes '
+                . $a->getNodeType()->getName()
+                . ' and '
+                .$b->getNodeType()->getName()
+                .' in property %s', $propertyName, 1482424087));
     }
 }
