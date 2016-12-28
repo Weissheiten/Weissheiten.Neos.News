@@ -21,8 +21,8 @@ class DateComparator implements IComparator{
         $a_value = $a->getProperty($propertyName);
         $b_value = $b->getProperty($propertyName);
 
-        $a_isdate = ($a_value instanceof DateTime);
-        $b_isdate = ($b_value instanceof DateTime);
+        $a_isdate = ($a_value instanceof \DateTime);
+        $b_isdate = ($b_value instanceof \DateTime);
 
         if(!$a_isdate){
             return ($order) ? 1 : -1;
@@ -31,9 +31,9 @@ class DateComparator implements IComparator{
             return ($order) ? -1 : 1;
         }
 
-        if($a[$propertyName] < $b[$propertyName]){
-            return ($order) ? 1 : -1;
+        if($a_value < $b_value ){
+            return ($order) ? -1 : 1;
         }
-        return ($order) ? -1 : 1;
+        return ($order) ? 1 : -1;
     }
 }
