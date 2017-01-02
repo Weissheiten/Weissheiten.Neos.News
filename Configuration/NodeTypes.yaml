@@ -1,6 +1,6 @@
 # Base Node
 'Weissheiten.Neos.News:AbstractNews':
-  label: "${(q(node).filterByDate('archiveDate', Date.Now(),'>').count()) > 0 ? String.trim(String.stripTags(q(node).property('title'))) : '[Archived] ' + String.trim(String.stripTags(q(node).property('title')))}"
+  label: "${(q(node).filterByDate('archiveDate', Date.Now(),'>','true').count()) > 0 ? String.trim(String.stripTags(q(node).property('title'))) : '[Archived] ' + String.trim(String.stripTags(q(node).property('title')))}"
   abstract: TRUE
   superTypes:
     'TYPO3.Neos:Document' : TRUE
@@ -103,12 +103,12 @@
             u: false
             sub: false
             sup: false
-            p: true
+            p: false
             h1: false
             h2: false
             h3: false
             pre: false
-            removeFormat: false
+            removeFormat: true
           table: {  }
           list: {  }
           link:

@@ -5,7 +5,7 @@ prototype(Weissheiten.Neos.News:NewsList) < prototype(Weissheiten.Neos.News:Abst
 
     # override the abstract configuration with the settings from Configuration/Settings.yaml
     @override.configuration = ${Configuration.setting('Weissheiten.Neos.News.newsList')}
-    @override.newsCollection =  ${q(site).find('[instanceof Weissheiten.Neos.News:AbstractNews]').filterByDate('archiveDate', Date.Now(),'>').sortByMultiple('important', 'DESC', 'sortDate', 'ASC').get()}
+    @override.newsCollection =  ${q(site).find('[instanceof Weissheiten.Neos.News:AbstractNews]').filterByDate('archiveDate', Date.Now(),'>', 'true').sortByMultiple(['important', 'DESC', 'boolean'],['archiveDate', 'DESC', 'exists'], ['sortDate', 'ASC', 'datetime'],['_creationDateTime','DESC', 'datetime']).get()}
 
     related = ${q(node).property('related')}
     linktext = ${q(node).property('linktext')}

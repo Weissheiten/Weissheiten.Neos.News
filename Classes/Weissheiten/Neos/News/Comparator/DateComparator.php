@@ -18,17 +18,22 @@ class DateComparator implements IComparator{
      */
     function execute($a, $b, $propertyName, $order)
     {
-        $a_value = $a->getProperty($propertyName);
-        $b_value = $b->getProperty($propertyName);
+        // ObjectAccess::getProperty results in a memory overflow, ->getProperty returns null on _creationDateTime
+        $a_value = ($propertyName === '_creationDateTime') ? $a->getCreationDateTime() : $a->getProperty($propertyName);
+        $b_value = ($propertyName === '_creationDateTime') ? $b->getCreationDateTime() : $b->getProperty($propertyName);
 
         $a_isdate = ($a_value instanceof \DateTime);
         $b_isdate = ($b_value instanceof \DateTime);
 
+        if(!$a_isdate && !$b_isdate){
+            return 0;
+        }
+
         if(!$a_isdate){
-            return ($order) ? 1 : -1;
+            return 1;
         }
         if(!$b_isdate){
-            return ($order) ? -1 : 1;
+            return -1;
         }
 
         if($a_value < $b_value ){

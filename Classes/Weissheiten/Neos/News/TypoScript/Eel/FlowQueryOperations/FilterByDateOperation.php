@@ -74,10 +74,23 @@ class FilterByDateOperation extends AbstractOperation {
             if (isset($arguments[2]) && !empty($arguments[2]) && in_array($arguments[2], array('<', '>'))) {
                 $compareOperator = $arguments[2];
             }
+
+            $nullIsMax = false;
+            // defines if a null value in the date should be considered as max
+            if(isset($arguments[3]) && $arguments[3]==true){
+                $nullIsMax = true;
+            }
+
             $filteredNodes = array();
             /** @var Node $node  */
             foreach ($nodes as $node) {
                 $propertyValue = $node->getProperty($filterByPropertyPath);
+
+                // consider a null value as max, e.g.: archiving purposes ("never archive this")
+                if($propertyValue===null && $nullIsMax){
+                    $propertyValue = new \DateTime('3000-12-31');
+                }
+
                 if ($compareOperator == '>') {
                     if ($propertyValue > $date) {
                         $filteredNodes[] = $node;

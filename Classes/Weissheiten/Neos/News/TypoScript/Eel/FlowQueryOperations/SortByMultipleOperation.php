@@ -13,6 +13,7 @@ use TYPO3\Eel\FlowQuery\FlowQuery;
 use TYPO3\TYPO3CR\Domain\Model\Node;
 use Weissheiten\Neos\News\Comparator\BooleanComparator;
 use Weissheiten\Neos\News\Comparator\DateComparator;
+use Weissheiten\Neos\News\Comparator\ExistsComparator;
 use Weissheiten\Neos\News\Comparator\IComparator;
 
 /**
@@ -62,17 +63,18 @@ class SortByMultipleOperation extends AbstractOperation {
      */
     public function evaluate(FlowQuery $flowQuery, array $arguments) {
         // check if there are at least 4 arguments, if not give advice to use "classic" sort
-        if(count($arguments)<4){
-            throw new \TYPO3\Eel\FlowQuery\FlowQueryException('sortByMultiple() needs at least 4 properties (2 node-properties and their sort order), if you only need to sort by a single property use "sort" instead', 1482825509);
+        if(count($arguments)<2){
+            throw new \TYPO3\Eel\FlowQuery\FlowQueryException('sortByMultiple() needs at least 2 configuration arrays consisting of 2 node-properties, their sort order and the comparator, if you only need to sort by a single property use "sort" instead', 1482825509);
         }
 
         // check arguments and build search array
-        for($i=0; $i<count($arguments);$i+=2){
-            $property = $arguments[$i];
-            $sortdirection = strtolower($arguments[$i+1]);
+        for($i=0; $i<count($arguments);$i++){
+            $property = isset($arguments[$i][0]) ? $arguments[$i][0] : null;
+            $sortdirection = isset($arguments[$i][1]) ? strtolower($arguments[$i][1]) : null;
+            $comparator = isset($arguments[$i][2]) ? $arguments[$i][2] : null;
 
-            if($property===null || $sortdirection===null || ($sortdirection!=='asc' && $sortdirection!=='desc')){
-                throw new \TYPO3\Eel\FlowQuery\FlowQueryException('sortByMultiple() expects couples of "property Name" and "sort direction" (ASC or DESC)', 1482825940);
+            if($property===null || $sortdirection===null || $comparator===null || ($sortdirection!=='asc' && $sortdirection!=='desc')){
+                throw new \TYPO3\Eel\FlowQuery\FlowQueryException('sortByMultiple() expects "property Name", "sort direction" (ASC or DESC) and "comparator"', 1482825940);
             }
         }
 
@@ -81,18 +83,15 @@ class SortByMultipleOperation extends AbstractOperation {
         if(count($nodes)>0){
             $comparatorArray = array();
 
-            for($i=0; $i<count($arguments);$i+=2){
-                /** @var Node $node */
-                $node = $nodes[0];
-                $property = $arguments[$i];
-                $sortdirection = strtolower($arguments[$i+1]);
-
-                $propertyType = $node->getNodeType()->getPropertyType($property);
+            for($i=0; $i<count($arguments);$i++){
+                $property = $arguments[$i][0];
+                $sortdirection = strtolower($arguments[$i][1]);
+                $comparator = strtolower($arguments[$i][2]);
 
                 $order = (strtolower($sortdirection)==='asc' ? true : false);
 
-                switch ($propertyType){
-                    case "DateTime":
+                switch ($comparator){
+                    case "datetime":
                         $comparatorArray[] = array(
                             'class' => new DateComparator(),
                             'property' => $property,
@@ -106,8 +105,15 @@ class SortByMultipleOperation extends AbstractOperation {
                             'order' => $order
                         );
                         break;
+                    case "exists":
+                        $comparatorArray[] = array(
+                            'class' => new ExistsComparator(),
+                            'property' => $property,
+                            'order' => $order
+                        );
+                        break;
                     default:
-                        throw new \TYPO3\Eel\FlowQuery\FlowQueryException('sortByMultiple(): the resolved propertytype (' . $propertyType .  ') of property ' . $arguments[$i] . ' is not supported at this time', 1482829065);
+                        throw new \TYPO3\Eel\FlowQuery\FlowQueryException('sortByMultiple(): the requested comparator (' . $comparator .  ') of property ' . $property . ' is not supported at this time', 1482829065);
                 }
             }
             usort($nodes,$this->build_sorter($comparatorArray));
