@@ -5,8 +5,8 @@
     "keywords": ["bootstrap", "neos"],
     "license": "GPL-3.0+",
     "require": {
-        "typo3/neos": "~3.0",
-        "typo3/neos-nodetypes": "~2.0",
+        "neos/neos": "~3.0",
+        "neos/nodetypes": "~3.0",
         "weissheiten/neos-nodemigration": "~1.0"
     },
     "autoload": {
