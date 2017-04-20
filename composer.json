@@ -7,7 +7,7 @@
     "require": {
         "neos/neos": "~3.0",
         "neos/nodetypes": "~3.0",
-        "weissheiten/neos-nodemigration": "dev-master"
+        "weissheiten/neos-nodemigration": "~1.0"
     },
     "autoload": {
         "psr-0": {
