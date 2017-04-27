@@ -6,11 +6,11 @@ namespace Weissheiten\Neos\News\TypoScript\Eel\FlowQueryOperations;
  * base code from dimaip news extension (https://github.com/sfi-ru/Sfi.News)    *
  *                                                                              */
 
-use TYPO3\Eel\FlowQuery\Operations\AbstractOperation;
-use TYPO3\Flow\Annotations as Flow;
-use TYPO3\TYPO3CR\Domain\Model\NodeInterface;
-use TYPO3\Eel\FlowQuery\FlowQuery;
-use TYPO3\TYPO3CR\Domain\Model\Node;
+use Neos\Eel\FlowQuery\Operations\AbstractOperation;
+use Neos\Flow\Annotations as Flow;
+use Neos\ContentRepository\Domain\Model\NodeInterface;
+use Neos\Eel\FlowQuery\FlowQuery;
+use Neos\ContentRepository\Domain\Model\Node;
 use Weissheiten\Neos\News\Comparator\BooleanComparator;
 use Weissheiten\Neos\News\Comparator\DateComparator;
 use Weissheiten\Neos\News\Comparator\ExistsComparator;
@@ -64,7 +64,7 @@ class SortByMultipleOperation extends AbstractOperation {
     public function evaluate(FlowQuery $flowQuery, array $arguments) {
         // check if there are at least 4 arguments, if not give advice to use "classic" sort
         if(count($arguments)<2){
-            throw new \TYPO3\Eel\FlowQuery\FlowQueryException('sortByMultiple() needs at least 2 configuration arrays consisting of 2 node-properties, their sort order and the comparator, if you only need to sort by a single property use "sort" instead', 1482825509);
+            throw new \Neos\Eel\FlowQuery\FlowQueryException('sortByMultiple() needs at least 2 configuration arrays consisting of 2 node-properties, their sort order and the comparator, if you only need to sort by a single property use "sort" instead', 1482825509);
         }
 
         // check arguments and build search array
@@ -74,7 +74,7 @@ class SortByMultipleOperation extends AbstractOperation {
             $comparator = isset($arguments[$i][2]) ? $arguments[$i][2] : null;
 
             if($property===null || $sortdirection===null || $comparator===null || ($sortdirection!=='asc' && $sortdirection!=='desc')){
-                throw new \TYPO3\Eel\FlowQuery\FlowQueryException('sortByMultiple() expects "property Name", "sort direction" (ASC or DESC) and "comparator"', 1482825940);
+                throw new \Neos\Eel\FlowQuery\FlowQueryException('sortByMultiple() expects "property Name", "sort direction" (ASC or DESC) and "comparator"', 1482825940);
             }
         }
 
@@ -113,7 +113,7 @@ class SortByMultipleOperation extends AbstractOperation {
                         );
                         break;
                     default:
-                        throw new \TYPO3\Eel\FlowQuery\FlowQueryException('sortByMultiple(): the requested comparator (' . $comparator .  ') of property ' . $property . ' is not supported at this time', 1482829065);
+                        throw new \Neos\Eel\FlowQuery\FlowQueryException('sortByMultiple(): the requested comparator (' . $comparator .  ') of property ' . $property . ' is not supported at this time', 1482829065);
                 }
             }
             usort($nodes,$this->build_sorter($comparatorArray));

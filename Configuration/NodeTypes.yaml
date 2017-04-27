@@ -1,62 +1,63 @@
 # Base Node
+
 'Weissheiten.Neos.News:AbstractNews':
-  label: "${(q(node).filterByDate('archiveDate', Date.Now(),'>','true').count()) > 0 ? String.trim(String.stripTags(q(node).property('title'))) : '[Archived] ' + String.trim(String.stripTags(q(node).property('title')))}"
-  abstract: TRUE
+  label: '${(q(node).filterByDate(''archiveDate'', Date.Now(),''>'',''true'').count()) > 0 ? String.trim(String.stripTags(q(node).property(''title''))) : ''[Archived] '' + String.trim(String.stripTags(q(node).property(''title'')))}'
+  abstract: true
   superTypes:
-    'TYPO3.Neos:Document' : TRUE
-    'TYPO3.Neos.NodeTypes:ImageMixin': TRUE
+    'Neos.Neos:Document': true
+    'Neos.NodeTypes:ImageMixin': true
   constraints:
     nodeTypes:
       '*': false
   childNodes:
     main:
-      type: 'TYPO3.Neos:ContentCollection'
+      type: 'Neos.Neos:ContentCollection'
       constraints:
         nodeTypes:
-          '*': FALSE
-          'Weissheiten.Neos.News:NewsMediaImage': TRUE
-          'Weissheiten.Neos.Bootstrap:Carousel' : TRUE
-          'Weissheiten.Neos.News:NewsMediaVideo': TRUE
-          'Weissheiten.Neos.News:NewsText': TRUE
+          '*': false
+          'Weissheiten.Neos.News:NewsMediaImage': true
+          'Weissheiten.Neos.Bootstrap:Carousel': true
+          'Weissheiten.Neos.News:NewsMediaVideo': true
+          'Weissheiten.Neos.News:NewsText': true
   ui:
     label: 'News Item'
-    icon: 'icon-edit'
-    group: 'news'
+    icon: icon-edit
+    group: news
     inspector:
       groups:
         general:
-          label: 'General'
+          label: General
           position: 10
         media:
-          label: 'Medien'
+          label: Medien
           position: 20
         related:
-          label: 'Related'
+          label: Related
   properties:
     sortDate:
       type: DateTime
-      defaultValue: 'now'
+      defaultValue: now
       ui:
         label: 'Sort date'
         inspector:
-          group: 'general'
+          group: general
           position: 9
           editorOptions:
             format: 'd-m-Y H:i'
       validation:
-        'TYPO3.Neos/Validation/DateTimeValidator': []
+        Neos.Neos/Validation/DateTimeValidator: {  }
     archiveDate:
       type: DateTime
       defaultValue: 'next year'
       ui:
         label: 'Archive date'
         inspector:
-          group: 'general'
+          group: general
           position: 10
           editorOptions:
             format: 'd-m-Y H:i'
       validation:
-        'TYPO3.Neos/Validation/DateTimeValidator': []
+        Neos.Neos/Validation/DateTimeValidator: {  }
     title:
       type: string
       ui:
@@ -77,11 +78,11 @@
             h3: false
             pre: false
             removeFormat: false
-          table: { }
-          list: { }
+          table: {  }
+          list: {  }
           link:
             a: true
-          alignment: { }
+          alignment: {  }
     important:
       type: boolean
       ui:
@@ -113,70 +114,70 @@
           list: {  }
           link:
             a: true
-          alignment: { }
+          alignment: {  }
     categories:
       type: references
       ui:
-        label: 'Categories'
+        label: Categories
         inspector:
-          group: 'related'
+          group: related
           editorOptions:
-            nodeTypes: ['Weissheiten.Neos.News:Category']
+            nodeTypes:
+              - 'Weissheiten.Neos.News:Category'
     author:
       type: reference
       ui:
-        label: 'Author'
+        label: Author
         inspector:
-          group: 'related'
+          group: related
           editorOptions:
-            nodeTypes: ['Weissheiten.Neos.News:Author']
-
+            nodeTypes:
+              - 'Weissheiten.Neos.News:Author'
     related:
       type: references
       ui:
         label: 'Related News'
         inspector:
-          group: 'related'
+          group: related
           editorOptions:
-            nodeTypes: ['Weissheiten.Neos.News:AbstractNews']
+            nodeTypes:
+              - 'Weissheiten.Neos.News:AbstractNews'
     tags:
       type: string
       ui:
-        label: 'Tags'
-        reloadIfChanged: FALSE
+        label: Tags
+        reloadIfChanged: false
         inspector:
-          group: 'related'
+          group: related
     image:
       ui:
-        label: 'Vorschaubild'
-        reloadIfChanged: TRUE
+        label: Vorschaubild
+        reloadIfChanged: true
         inspector:
           editorOptions:
             features:
-              crop: TRUE
-              resize: FALSE
+              crop: true
+              resize: false
             crop:
               aspectRatio:
                 options:
-                  fourFive: ~
-                  fiveSeven: ~
-                  twoThree: ~
-                  fourThree: ~
-                  sixteenNine: ~
-                enableOriginal: FALSE
-                allowCustom: FALSE
-
+                  fourFive: null
+                  fiveSeven: null
+                  twoThree: null
+                  fourThree: null
+                  sixteenNine: null
+                enableOriginal: false
+                allowCustom: false
 'Weissheiten.Neos.News:News':
   superTypes:
-    'Weissheiten.Neos.News:AbstractNews' : TRUE
-
+    'Weissheiten.Neos.News:AbstractNews': true
 'Weissheiten.Neos.News:Event':
   superTypes:
-    'Weissheiten.Neos.News:AbstractNews' : TRUE
+    'Weissheiten.Neos.News:AbstractNews': true
   ui:
-    label: 'Veranstaltung'
-    icon: 'icon-calendar'
-    group: 'news'
+    label: Veranstaltung
+    icon: icon-calendar
+    group: news
     inspector:
       groups:
         dateplace:
@@ -185,35 +186,36 @@
   properties:
     eventDate:
       type: DateTime
-      defaultValue: 'now'
+      defaultValue: now
       ui:
-        label: 'Veranstaltungsdatum'
+        label: Veranstaltungsdatum
         inspector:
-          group: 'dateplace'
+          group: dateplace
           position: 5
           editorOptions:
             format: 'd-m-Y H:i'
       validation:
-        'TYPO3.Neos/Validation/DateTimeValidator': []
+        Neos.Neos/Validation/DateTimeValidator: {  }
     eventEnd:
       type: DateTime
       ui:
-        label: 'Veranstaltungsende'
+        label: Veranstaltungsende
         inspector:
-          group: 'dateplace'
+          group: dateplace
           position: 6
           editorOptions:
             format: 'd-m-Y H:i'
       validation:
-        'TYPO3.Neos/Validation/DateTimeValidator': []
+        Neos.Neos/Validation/DateTimeValidator: {  }
     place:
       type: references
       ui:
         label: 'Veranstaltungsort (wenn intern)'
         inspector:
-          group: 'dateplace'
+          group: dateplace
           editorOptions:
-            nodeTypes: ['Billardcafe.Home:Outlet']
+            nodeTypes:
+              - 'Billardcafe.Home:Outlet'
     externalplace:
       type: string
       defaultValue: ''
@@ -221,50 +223,47 @@
         label: 'Veranstaltungsort (wenn extern)'
         inlineEditable: false
         inspector:
-          group: 'dateplace'
-
-# Categories - Subcategories are reflected by creating categories within categories in the tree (see constraints)
+          group: dateplace
 'Weissheiten.Neos.News:Category':
   superTypes:
-    'TYPO3.Neos:Document' : TRUE
+    'Neos.Neos:Document': true
   constraints:
     nodeTypes:
       '*': false
       'Weissheiten.Neos.News:Category': true
   ui:
-    label: 'Category'
-    icon: 'icon-book'
-    group: 'news'
+    label: Category
+    icon: icon-book
+    group: news
   childNodes:
     main:
-      type: 'TYPO3.Neos:ContentCollection'
-
+      type: 'Neos.Neos:ContentCollection'
 'Weissheiten.Neos.News:Author':
   superTypes:
-    'TYPO3.Neos:Document': TRUE
-    'TYPO3.Neos.NodeTypes:ImageMixin': TRUE
+    'Neos.Neos:Document': true
+    'Neos.NodeTypes:ImageMixin': true
   constraints:
     nodeTypes:
       '*': false
   ui:
-    label: 'Author'
-    icon: 'icon-user'
-    group: 'news'
+    label: Author
+    icon: icon-user
+    group: news
     inspector:
       groups:
         general:
-          label: 'General'
+          label: General
           position: 5
   childNodes:
     main:
-      type: 'TYPO3.Neos:ContentCollection'
+      type: 'Neos.Neos:ContentCollection'
   properties:
     name:
       type: string
       ui:
         label: 'Autoren Name'
         inspector:
-          group: 'general'
+          group: general
     email:
       type: string
       ui:
@@ -284,212 +283,205 @@
             h3: false
             pre: false
             removeFormat: false
-          table: { }
-          list: { }
+          table: {  }
+          list: {  }
           link:
             a: true
-          alignment: { }
+          alignment: {  }
         inspector:
-          group: 'general'
+          group: general
     image:
       ui:
         label: 'Autoren Bild'
-        reloadIfChanged: TRUE
+        reloadIfChanged: true
         inspector:
           editorOptions:
             features:
-              crop: TRUE
-              resize: FALSE
+              crop: true
+              resize: false
             crop:
               aspectRatio:
                 options:
-                  fourFive: ~
-                  fiveSeven: ~
-                  twoThree: ~
-                  fourThree: ~
-                  sixteenNine: ~
-                enableOriginal: FALSE
-                allowCustom: FALSE
-
+                  fourFive: null
+                  fiveSeven: null
+                  twoThree: null
+                  fourThree: null
+                  sixteenNine: null
+                enableOriginal: false
+                allowCustom: false
 'Weissheiten.Neos.News:NewsList':
   superTypes:
-    'TYPO3.Neos:Content' : TRUE
+    'Neos.Neos:Content': true
   ui:
     label: 'News list'
     icon: icon-list
     inlineEditable: true
-    group: 'news'
+    group: news
   constraints:
     nodeTypes:
       '*': false
-
 'Weissheiten.Neos.News:NewsArchive':
   superTypes:
-    'Weissheiten.Neos.News:NewsList': TRUE
+    'Weissheiten.Neos.News:NewsList': true
   ui:
     label: 'News archive'
-
 'Weissheiten.Neos.News:NewsLatest':
   superTypes:
-    'TYPO3.Neos:Content' : TRUE
+    'Neos.Neos:Content': true
   ui:
     label: 'News latest'
     icon: icon-list
     inlineEditable: true
-    group: 'news'
+    group: news
     inspector:
       groups:
         general:
-          label: 'General'
+          label: General
           position: 10
         related:
-          label: 'Related'
+          label: Related
   properties:
     related:
       type: reference
       ui:
         label: 'weiterführender Link'
         inspector:
-          group: 'related'
+          group: related
           editorOptions:
-            nodeTypes: ['TYPO3.Neos.NodeTypes:Page']
+            nodeTypes:
+              - 'Neos.NodeTypes:Page'
     linktext:
       type: string
       defaultValue: ''
       ui:
-        label: 'Linktext'
-        reloadIfChanged: TRUE
+        label: Linktext
+        reloadIfChanged: true
         inlineEditable: false
         inspector:
-          group: 'related'
+          group: related
   constraints:
     nodeTypes:
       '*': false
-
 'Weissheiten.Neos.News:EventLatest':
   superTypes:
-    'Weissheiten.Neos.News:NewsLatest' : TRUE
+    'Weissheiten.Neos.News:NewsLatest': true
   ui:
     label: 'Veranstaltungsübersicht Teaser'
     icon: icon-list
-
 'Weissheiten.Neos.News:EventList':
   superTypes:
-    'TYPO3.Neos:Content' : TRUE
+    'Neos.Neos:Content': true
   ui:
-    label: 'Veranstaltungskalender'
+    label: Veranstaltungskalender
     icon: icon-list
     inlineEditable: true
-    group: 'news'
+    group: news
     inspector:
       groups:
         general:
-          label: 'General'
+          label: General
           position: 10
         related:
-          label: 'Referenzen'
+          label: Referenzen
   properties:
     entryPoint:
       type: reference
       ui:
-        label: 'Ausgangspunkt'
+        label: Ausgangspunkt
         inspector:
           group: related
           editorOptions:
-            nodeTypes: ['TYPO3.Neos.NodeTypes:Page']
+            nodeTypes:
+              - 'Neos.NodeTypes:Page'
   constraints:
     nodeTypes:
       '*': false
-
 'Weissheiten.Neos.News:NewsText':
   superTypes:
-    'TYPO3.Neos.NodeTypes:Text': TRUE
+    'Neos.NodeTypes:Text': true
   ui:
-    group: 'news'
+    group: news
     label: NewsText
-    icon: 'icon-file-text'
+    icon: icon-file-text
   properties:
     text:
       ui:
         position: 200
         aloha:
-          'format': # Enable specific formatting options.
-            'strong': true
-            'b': false
-            'em': true
-            'i': false
-            'u': true
-            'sub': false
-            'sup': false
-            'p': true
-            'h1': false
-            'h2': false
-            'h3': false
-            'h4': true
-            'h5': true
-            'h6': true
-            'code': false
-            'removeFormat': true
-          'table':
-            'table': true
-          'link':
-            'a': true
-          'list':
-            'ul': true
-            'ol': true
-          'alignment':
-            'left': true
-            'center': true
-            'right': true
-            'justify': true
-          'formatlesspaste':
-            'button': true # Show toggle button for formatless pasting.
-            'formatlessPasteOption': true # Whether the format less pasting should be enable by default.
-            'autoparagraph': true # Automatically wrap non-wrapped text blocks in paragraph blocks.
-
+          format:
+            strong: true
+            b: false
+            em: true
+            i: false
+            u: true
+            sub: false
+            sup: false
+            p: true
+            h1: false
+            h2: false
+            h3: false
+            h4: true
+            h5: true
+            h6: true
+            code: false
+            removeFormat: true
+          table:
+            table: true
+          link:
+            a: true
+          list:
+            ul: true
+            ol: true
+          alignment:
+            left: true
+            center: true
+            right: true
+            justify: true
+          formatlesspaste:
+            button: true
+            formatlessPasteOption: true
+            autoparagraph: true
 'Weissheiten.Neos.News:NewsMedia':
-  abstract: TRUE
+  abstract: true
   ui:
-    group: 'news'
+    group: news
     inspector:
       groups:
         media:
-          label: 'Medien'
+          label: Medien
           position: 4
-    inlineEditable: TRUE
+    inlineEditable: true
   properties:
     displayStyle:
       type: string
-      defaultValue: 'poster'
+      defaultValue: poster
       ui:
-        label: 'Medienstil'
+        label: Medienstil
         inspector:
-          group: 'media'
-          editor: 'TYPO3.Neos/Inspector/Editors/SelectBoxEditor'
+          group: media
+          editor: Neos.Neos/Inspector/Editors/SelectBoxEditor
           editorOptions:
             values:
-              'poster':
+              poster:
                 label: 'Poster Format'
-              'flavor':
+              flavor:
                 label: 'Auflockerungs Format'
-
 'Weissheiten.Neos.News:NewsMediaImage':
   superTypes:
-    'Weissheiten.Neos.Bootstrap:ResponsiveImage' : TRUE
-    'Weissheiten.Neos.News:NewsMedia' : TRUE
+    'Weissheiten.Neos.Bootstrap:ResponsiveImage': true
+    'Weissheiten.Neos.News:NewsMedia': true
   ui:
     label: 'Newsbeitrag Bild'
   properties:
     imageStyle:
-      ui: ~
+      ui: null
     alignment:
-      ui: ~
+      ui: null
     responsive:
-      ui: ~
-
+      ui: null
 'Weissheiten.Neos.News:NewsMediaVideo':
   superTypes:
-    'Weissheiten.Neos.Bootstrap:YouTube' : TRUE
-    'Weissheiten.Neos.News:NewsMedia' : TRUE
+    'Weissheiten.Neos.Bootstrap:YouTube': true
+    'Weissheiten.Neos.News:NewsMedia': true
   ui:
     label: 'Newsbeitrag Video'

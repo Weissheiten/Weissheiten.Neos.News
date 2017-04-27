@@ -6,7 +6,7 @@ up:
         -
           type: 'NodeType'
           settings:
-            nodeType: 'TYPO3.Neos.NodeTypes:Text'
+            nodeType: 'Neos.NodeTypes:Text'
         -
           type: '\Weissheiten\Neos\NodeMigration\Migration\Filters\HasParentOfNodeType'
           settings:
@@ -37,4 +37,4 @@ down:
          -
            type: 'ChangeNodeType'
            settings:
-             newType: 'TYPO3.Neos.NodeTypes:Text'
+             newType: 'Neos.NodeTypes:Text'

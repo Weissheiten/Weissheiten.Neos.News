@@ -6,18 +6,18 @@ namespace Weissheiten\Neos\News\ViewHelpers\Widget\Controller;
  *                                                                        *
  *                                                                        */
 
-use TYPO3\Flow\Annotations as Flow;
-use TYPO3\Flow\Utility\Arrays;
-use TYPO3\Fluid\Core\Widget\AbstractWidgetController;
-use TYPO3\TYPO3CR\Exception\PageNotFoundException;
-use TYPO3\TYPO3CR\Domain\Repository\NodeDataRepository;
-use TYPO3\Eel\FlowQuery\FlowQuery;
+use Neos\Flow\Annotations as Flow;
+use Neos\Utility\Arrays;
+use Neos\FluidAdaptor\Core\Widget\AbstractWidgetController;
+use Neos\ContentRepository\Exception\PageNotFoundException;
+use Neos\ContentRepository\Domain\Repository\NodeDataRepository;
+use Neos\Eel\FlowQuery\FlowQuery;
 /**
  * The widget controller for the Node Paginate Widget
  */
 class EventCalendarController extends AbstractWidgetController {
     /**
-     * @var \TYPO3\TYPO3CR\Domain\Model\NodeInterface
+     * @var \Neos\ContentRepository\Domain\Model\NodeInterface
      */
     protected $locationFilterNode;
 
@@ -27,7 +27,7 @@ class EventCalendarController extends AbstractWidgetController {
     protected $showMonthYear;
 
     /**
-     * @var array<\TYPO3\TYPO3CR\Domain\Model\NodeInterface>
+     * @var array<\Neos\ContentRepository\Domain\Model\NodeInterface>
      */
     protected $calendarEntries;
 
@@ -51,7 +51,7 @@ class EventCalendarController extends AbstractWidgetController {
     /**
      * @param string $showMonthYear
      * @return void
-     * @throws \TYPO3\TYPO3CR\Exception\PageNotFoundException
+     * @throws \Neos\ContentRepository\Exception\PageNotFoundException
      */
     public function indexAction($showMonthYear = null) {
         if($showMonthYear==null){

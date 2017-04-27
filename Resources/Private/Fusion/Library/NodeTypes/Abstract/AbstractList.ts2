@@ -1,6 +1,6 @@
 # Abstract List - is used by NewsList and NewsLatest
-# configuration is overwritten via @override.configuration in the according implementations (see /Resources/Private/TypoScript/Library/NodeTypes/NewsList.ts2 for example
-prototype(Weissheiten.Neos.News:AbstractList) < prototype(TYPO3.Neos:Content){
+# configuration is overwritten via @override.configuration in the according implementations (see /Resources/Private/Fusion/Library/NodeTypes/NewsList.ts2 for example
+prototype(Weissheiten.Neos.News:AbstractList) < prototype(Neos.Neos:Content){
 
     @override.newsCollection =  ${q(site).find('[instanceof Weissheiten.Neos.News:News]').get()}
     @override.configuration = ${Configuration.setting('Weissheiten.Neos.News.newsLatest')}

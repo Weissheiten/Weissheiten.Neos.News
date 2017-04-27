@@ -1,16 +1,8 @@
+
 TYPO3:
   Fluid:
     namespaces:
-      'http://Weissheiten/Neos/News/ViewHelpers' : 'Weissheiten\Neos\News\ViewHelpers'
-  Neos:
-    typoScript:
-      autoInclude:
-        'Weissheiten.Neos.News': TRUE
-    nodeTypes:
-      groups:
-        news:
-          position: 280
-          label: 'Weissheiten News'
+      'http://Weissheiten/Neos/News/ViewHelpers': Weissheiten\Neos\News\ViewHelpers
 Weissheiten:
   Neos:
     News:
@@ -22,7 +14,7 @@ Weissheiten:
         sortProperty: sortDate
       newsLatest:
         maxNumberOfItems: 4
-        pagination: ~
+        pagination: null
         sortProperty: sortDate
       eventList:
         maxNumberOfItems: 10000
@@ -32,5 +24,15 @@ Weissheiten:
         sortProperty: sortDate
       eventLatest:
         maxNumberOfItems: 10
-        pagination: ~
+        pagination: null
         sortProperty: eventDate
+Neos:
+  Neos:
+    nodeTypes:
+      groups:
+        news:
+          position: 280
+          label: 'Weissheiten News'
+    fusion:
+      autoInclude:
+        Weissheiten.Neos.News: true

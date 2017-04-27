@@ -2,7 +2,7 @@
 
 namespace Weissheiten\Neos\News\Comparator;
 
-use TYPO3\TYPO3CR\Domain\Model\Node;
+use Neos\ContentRepository\Domain\Model\Node;
 
 class BooleanComparator implements IComparator{
 

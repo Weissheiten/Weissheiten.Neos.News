@@ -5,9 +5,9 @@ namespace Weissheiten\Neos\News\ViewHelpers\Widget;
  * This script belongs to the Weissheiten.Neos.News package                    *
  *                                                                        */
 
-use TYPO3\Flow\Annotations as Flow;
-use TYPO3\Fluid\Core\Widget\AbstractWidgetViewHelper;
-use TYPO3\TYPO3CR\Domain\Model\NodeInterface;
+use Neos\Flow\Annotations as Flow;
+use Neos\FluidAdaptor\Core\Widget\AbstractWidgetViewHelper;
+use Neos\ContentRepository\Domain\Model\NodeInterface;
 
 /**
  * This ViewHelper renders a Calendar for nodes (events)
@@ -27,7 +27,7 @@ use TYPO3\TYPO3CR\Domain\Model\NodeInterface;
  * </code>
  *
  * <code title="full configuration">
- * <typo3cr:widget.paginate parentNode="{parentNode}" as="paginatedNodes" nodeTypeFilter="TYPO3.Neos:Page" configuration="{itemsPerPage: 5, insertAbove: 1, insertBelow: 0, maximumNumberOfLinks: 10, maximumNumberOfNodes: 350}">
+ * <typo3cr:widget.paginate parentNode="{parentNode}" as="paginatedNodes" nodeTypeFilter="Neos.NodeTypes:Page" configuration="{itemsPerPage: 5, insertAbove: 1, insertBelow: 0, maximumNumberOfLinks: 10, maximumNumberOfNodes: 350}">
  *   // use {paginatedNodes} inside a <f:for> loop.
  * </typo3cr:widget.paginate>
  * </code>
@@ -46,8 +46,8 @@ class EventCalendarViewHelper extends AbstractWidgetViewHelper {
      * Render this view helper
      *
      * @param string $as Variable name for the result set
-     * @param \TYPO3\TYPO3CR\Domain\Model\NodeInterface $locationFilterNode The node which must occur as a location reference in the event to be included in the record set
-     * @param \TYPO3\TYPO3CR\Domain\Model\NodeInterface $startingPoint Starting point for traversing the tree in search of fitting nodes
+     * @param \Neos\ContentRepository\Domain\Model\NodeInterface $locationFilterNode The node which must occur as a location reference in the event to be included in the record set
+     * @param \Neos\ContentRepository\Domain\Model\NodeInterface $startingPoint Starting point for traversing the tree in search of fitting nodes
      * @return string
      */
     public function render($as, $calendarEntries = NULL, $locationFilterNode = NULL) {

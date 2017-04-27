@@ -12,12 +12,12 @@
 #      Weissheiten_News_WidgetAction: GRANT
 
 privilegeTargets:
-  TYPO3\Flow\Security\Authorization\Privilege\Method\MethodPrivilege:
+  Neos\Flow\Security\Authorization\Privilege\Method\MethodPrivilege:
     'Weissheiten.Neos.News:EventCalendarControllerActions':
       matcher: 'method(Weissheiten\Neos\News\ViewHelpers\Widget\Controller\EventCalendarController->indexAction())'
 
 roles:
-  'TYPO3.Flow:Everybody':
+  'Neos.Flow:Everybody':
     privileges:
       -
         privilegeTarget: 'Weissheiten.Neos.News:EventCalendarControllerActions'

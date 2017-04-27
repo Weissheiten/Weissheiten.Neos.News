@@ -1,5 +1,5 @@
 // Demo TS2 Implementation including a template to show sorting and paging
-prototype(Weissheiten.Neos.News:EventList) < prototype(TYPO3.Neos:Content){
+prototype(Weissheiten.Neos.News:EventList) < prototype(Neos.Neos:Content){
     newsRequest = ${request.arguments.tag}
 
     templatePath = 'resource://Weissheiten.Neos.News/Private/Templates/NodeTypes/EventList.html'

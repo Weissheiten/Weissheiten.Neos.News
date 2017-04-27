@@ -6,11 +6,11 @@ namespace Weissheiten\Neos\News\TypoScript\Eel\FlowQueryOperations;
  * Used to get a list of related Entries                                        *
  *                                                                              */
 
-use TYPO3\Eel\FlowQuery\FlowQuery;
-use TYPO3\Eel\FlowQuery\Operations\AbstractOperation;
-use TYPO3\Flow\Annotations as Flow;
-use TYPO3\TYPO3CR\Domain\Model\Node;
-use TYPO3\TYPO3CR\Domain\Model\NodeInterface;
+use Neos\Eel\FlowQuery\FlowQuery;
+use Neos\Eel\FlowQuery\Operations\AbstractOperation;
+use Neos\Flow\Annotations as Flow;
+use Neos\ContentRepository\Domain\Model\Node;
+use Neos\ContentRepository\Domain\Model\NodeInterface;
 /**
  * EEL related() operation to find related Nodes
  */
@@ -51,7 +51,7 @@ class RelatedOperation extends AbstractOperation {
     public function evaluate(FlowQuery $flowQuery, array $arguments)
     {
         if (!isset($arguments[0]) || empty($arguments[0])) {
-            throw new \TYPO3\Eel\FlowQuery\FlowQueryException('related() needs property name by which nodes should be matched', 1332492263);
+            throw new \Neos\Eel\FlowQuery\FlowQueryException('related() needs property name by which nodes should be matched', 1332492263);
         } else {
             $nodes = $flowQuery->getContext();
             // Property that contains the reference
