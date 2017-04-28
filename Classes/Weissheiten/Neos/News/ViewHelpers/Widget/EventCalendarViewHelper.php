@@ -46,7 +46,7 @@ class EventCalendarViewHelper extends AbstractWidgetViewHelper {
      * Render this view helper
      *
      * @param string $as Variable name for the result set
-     * @param \Neos\ContentRepository\Domain\Model\NodeInterface $locationFilterNode The node which must occur as a location reference in the event to be included in the record set
+     * @param \Neos\Eel\FlowQuery\FlowQuery $calendarEntries The node which must occur as a location reference in the event to be included in the record set
      * @param \Neos\ContentRepository\Domain\Model\NodeInterface $startingPoint Starting point for traversing the tree in search of fitting nodes
      * @return string
      */
