@@ -48,7 +48,7 @@
         Neos.Neos/Validation/DateTimeValidator: {  }
     archiveDate:
       type: DateTime
-      defaultValue: 'next year'
+      #defaultValue: 'next year' - if this is set no null values are allowed
       ui:
         label: 'Archive date'
         inspector:
