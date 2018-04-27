@@ -9,8 +9,7 @@
     "license": "GPL-3.0+",
     "require": {
         "neos/neos": "~4.0",
-        "neos/nodetypes": "~4.0",
-        "weissheiten/neos-nodemigration": "~1.0"
+        "neos/nodetypes": "~4.0"
     },
     "autoload": {
         "psr-0": {
