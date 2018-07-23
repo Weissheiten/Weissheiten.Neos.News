@@ -1,5 +1,5 @@
 # Create a new prototype for an alternative way to display the primary content for news
-prototype(Weissheiten.Neos.News:Event) < prototype(Neos.Neos:Content){
+prototype(Weissheiten.Neos.News:EventDetail) < prototype(Neos.Neos:Content){
     // set the template path and section to use
     templatePath = 'resource://Weissheiten.Neos.News/Private/Templates/TypoScriptObjects/EventDetail.html'
     sectionName = 'eventDetail'
@@ -35,6 +35,6 @@ prototype(Neos.Neos:PrimaryContent){
     event{
         @position = 'before default'
         condition = ${q(node).is('[instanceof Weissheiten.Neos.News:Event]')}
-        type = 'Weissheiten.Neos.News:Event'
+        type = 'Weissheiten.Neos.News:EventDetail'
     }
 }
