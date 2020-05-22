@@ -48,7 +48,6 @@
         Neos.Neos/Validation/DateTimeValidator: {  }
     archiveDate:
       type: DateTime
-      #defaultValue: 'next year' - if this is set no null values are allowed
       ui:
         label: 'Archive date'
         inspector:
@@ -64,25 +63,22 @@
         inlineEditable: true
         inspector:
           group: null
-        aloha:
-          placeholder: 'Enter title here'
-          format:
-            b: false
-            i: false
-            u: false
-            sub: false
-            sup: false
-            p: false
-            h1: false
-            h2: false
-            h3: false
-            pre: false
-            removeFormat: false
-          table: {  }
-          list: {  }
-          link:
-            a: true
-          alignment: {  }
+        inline:
+          editorOptions:
+            formatting:
+              sub: false
+              sup: false
+              p: false
+              h1: false
+              h2: false
+              h3: false
+              pre: false
+              removeFormat: false
+              a: true
+              strong: false
+              em: false
+              underline: false
+            placeholder: 'Enter title here'
     important:
       type: boolean
       ui:
@@ -96,25 +92,22 @@
         inlineEditable: true
         inspector:
           group: null
-        aloha:
-          placeholder: 'Enter teaser here'
-          format:
-            b: true
-            i: true
-            u: false
-            sub: false
-            sup: false
-            p: false
-            h1: false
-            h2: false
-            h3: false
-            pre: false
-            removeFormat: true
-          table: {  }
-          list: {  }
-          link:
-            a: true
-          alignment: {  }
+        inline:
+          editorOptions:
+            formatting:
+              sub: false
+              sup: false
+              p: false
+              h1: false
+              h2: false
+              h3: false
+              pre: false
+              removeFormat: true
+              a: true
+              strong: true
+              em: true
+              underline: false
+            placeholder: 'Enter teaser here'
     categories:
       type: references
       ui:
@@ -269,27 +262,24 @@
       ui:
         label: 'Autoren E-Mail'
         inlineEditable: true
-        aloha:
-          placeholder: 'Autoren E-Mail'
-          format:
-            b: false
-            i: false
-            u: false
-            sub: false
-            sup: false
-            p: false
-            h1: false
-            h2: false
-            h3: false
-            pre: false
-            removeFormat: false
-          table: {  }
-          list: {  }
-          link:
-            a: true
-          alignment: {  }
         inspector:
           group: general
+        inline:
+          editorOptions:
+            formatting:
+              sub: false
+              sup: false
+              p: false
+              h1: false
+              h2: false
+              h3: false
+              pre: false
+              removeFormat: false
+              a: true
+              strong: false
+              em: false
+              underline: false
+            placeholder: 'Autoren E-Mail'
     image:
       ui:
         label: 'Autoren Bild'
@@ -407,40 +397,31 @@
     text:
       ui:
         position: 200
-        aloha:
-          format:
-            strong: true
-            b: false
-            em: true
-            i: false
-            u: true
-            sub: false
-            sup: false
-            p: true
-            h1: false
-            h2: false
-            h3: false
-            h4: true
-            h5: true
-            h6: true
-            code: false
-            removeFormat: true
-          table:
-            table: true
-          link:
-            a: true
-          list:
-            ul: true
-            ol: true
-          alignment:
-            left: true
-            center: true
-            right: true
-            justify: true
-          formatlesspaste:
-            button: true
-            formatlessPasteOption: true
-            autoparagraph: true
+        inline:
+          editorOptions:
+            formatting:
+              strong: false
+              em: false
+              sub: false
+              sup: false
+              p: true
+              h1: false
+              h2: false
+              h3: false
+              h4: true
+              h5: true
+              h6: true
+              code: false
+              removeFormat: true
+              table: true
+              a: true
+              ul: true
+              ol: true
+              left: true
+              center: true
+              right: true
+              justify: true
+              underline: true
 'Weissheiten.Neos.News:NewsMedia':
   abstract: true
   ui:
