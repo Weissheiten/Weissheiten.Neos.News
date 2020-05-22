@@ -8,6 +8,6 @@ include: Library/NodeTypes/NewsArchive.ts2
 include: Library/NodeTypes/NewsLatest.ts2
 
 // relies on News so include afterwards
-include: Library/NodeTypes/Event.ts2
+include: Library/NodeTypes/EventDetail.ts2
 include: Library/NodeTypes/EventList.ts2
 include: Library/NodeTypes/EventLatest.ts2
