@@ -9,7 +9,8 @@
     "license": "GPL-3.0+",
     "require": {
         "neos/neos": "~5.0",
-        "neos/nodetypes": "~5.0"
+        "neos/nodetypes": "~5.0",
+        "flowpack/listable": "^3.5"
     },
     "autoload": {
         "psr-0": {
