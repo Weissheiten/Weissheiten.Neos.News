@@ -5,7 +5,11 @@ prototype(Weissheiten.Neos.News:NewsList) < prototype(Weissheiten.Neos.News:Abst
 
     # override the abstract configuration with the settings from Configuration/Settings.yaml
     @override.configuration = ${Configuration.setting('Weissheiten.Neos.News.newsList')}
-    @override.newsCollection =  ${q(site).find('[instanceof Weissheiten.Neos.News:AbstractNews]').filterByDate('archiveDate', Date.Now(),'>', 'true').sortByMultiple(['important', 'DESC', 'boolean'],['archiveDate', 'DESC', 'exists'], ['sortDate', 'ASC', 'datetime'],['_creationDateTime','DESC', 'datetime']).get()}
+    # This currently only works for a single category
+    @override.newsCollection =  ${ (q(node).property('categories')) ? q(site).find('[instanceof Weissheiten.Neos.News:AbstractNews]').add(q(node).property('categories')).related('categories').filterByDate('archiveDate', Date.Now(),'>', 'true').sortByMultiple(['important', 'DESC', 'boolean'],['archiveDate', 'DESC', 'exists'], ['sortDate', 'ASC', 'datetime'],['_creationDateTime','DESC', 'datetime']).get() : q(site).find('[instanceof Weissheiten.Neos.News:AbstractNews]').add(q(node).property('categories')).filterByDate('archiveDate', Date.Now(),'>', 'true').sortByMultiple(['important', 'DESC', 'boolean'],['archiveDate', 'DESC', 'exists'], ['sortDate', 'ASC', 'datetime'],['_creationDateTime','DESC', 'datetime']).get()}
+
+    #maincategory = ${q(node).property('categories')[0]}
+    #@override.newsCollection =  ${q(site).find('[instanceof Weissheiten.Neos.News:AbstractNews]').filterByReference('categories', q(node)).get()}
 
     related = ${q(node).property('related')}
     linktext = ${q(node).property('linktext')}
