@@ -307,6 +307,24 @@
     icon: icon-list
     inlineEditable: true
     group: news
+    inspector:
+      groups:
+        general:
+          label: General
+          position: 10
+        related:
+          label: Related
+          position: 20
+  properties:
+    categories:
+      type: references
+      ui:
+        label: Categories
+        inspector:
+          group: general
+          editorOptions:
+            nodeTypes:
+              - 'Weissheiten.Neos.News:Category'
   constraints:
     nodeTypes:
       '*': false
@@ -396,7 +414,6 @@
   properties:
     text:
       ui:
-        position: 200
         inline:
           editorOptions:
             formatting:
@@ -454,12 +471,9 @@
   ui:
     label: 'Newsbeitrag Bild'
   properties:
-    imageStyle:
-      ui: null
-    alignment:
-      ui: null
-    responsive:
-      ui: null
+    imageStyle: [ ]
+    alignment: [ ]
+    responsive: [ ]
 'Weissheiten.Neos.News:NewsMediaVideo':
   superTypes:
     'Weissheiten.Neos.Bootstrap:YouTube': true
